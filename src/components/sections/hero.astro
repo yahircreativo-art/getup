@@ -1,0 +1,15 @@
+<section id="hero-section" class="flex justify-center overflow-hidden" style="background: radial-gradient(circle at center 5%, var(--color-brand-600), var(--color-brand-700) 20%, var(--color-neutral-950) 65%)">
+    <div class="w-fit h-screen items-center flex container justify-center text-center">
+        <h1 class="text-6xl sm:text-8xl md:text-9xl font-black w-11/12 text-neutral-50">GET UP ONLINE</h1>
+    </div>
+</section>
+
+<script>
+  const heroSection = document.getElementById('hero-section');
+  
+  window.addEventListener('scroll', () => {
+    const scrollY = window.scrollY;
+    heroSection?.style.setProperty('background-position', `center ${scrollY * 0.15}px`);
+    heroSection?.style.setProperty('background-size', '100% auto');
+  });
+</script>
