@@ -54,9 +54,7 @@ const isLeft = imagePosition === 'left';
   }
 </style>
 
-<section class="relative flex justify-center bg-neutral-950 h-screen" style="content-visibility: auto; contain-intrinsic-size: 0 100vh;">
-  <!-- Floating icons layer -->
-  <slot />
+<section class="flex justify-center bg-neutral-950 h-screen" style="content-visibility: auto; contain-intrinsic-size: 0 100vh;">
   <div class="max-w-7xl mx-auto w-full items-center flex px-4 md:px-8">
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center w-full">
 
@@ -72,7 +70,7 @@ const isLeft = imagePosition === 'left';
 
       <!-- Content: second in DOM (bottom on mobile), opposite side on desktop -->
       <div class:list={[
-        'feature-content text-center md:text-left',
+        'feature-content md:text-left',
         isLeft ? 'md:order-2' : 'md:order-1',
       ]}>
         <div class="flex items-center gap-4 mb-4 justify-center md:justify-start">
