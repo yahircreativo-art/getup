@@ -1,0 +1,116 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  imagePosition?: 'left' | 'right';
+  titleIcon?: string;
+  buttonLabel?: string;
+  buttonHref?: string;
+  buttonVariant?: 'primary' | 'secondary' | 'outline' | 'ghost';
+}
+
+const {
+  title,
+  description,
+  imagePosition = 'right',
+  titleIcon,
+  buttonLabel,
+  buttonHref = '#',
+  buttonVariant = 'primary',
+} = Astro.props;
+
+const isLeft = imagePosition === 'left';
+---
+
+<style>
+  .feature-content {
+    opacity: 0;
+    transform: translateX(-30px);
+    transition: opacity 0.7s var(--ease-standard), transform 0.7s var(--ease-standard);
+  }
+
+  .feature-content.from-right {
+    transform: translateX(30px);
+  }
+
+  .feature-content.is-visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .feature-image {
+    opacity: 0;
+    transform: translateX(30px);
+    transition: opacity 0.7s var(--ease-standard), transform 0.7s var(--ease-standard);
+  }
+
+  .feature-image.from-left {
+    transform: translateX(-30px);
+  }
+
+  .feature-image.is-visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+</style>
+
+<section class="relative flex justify-center bg-neutral-950 h-screen" style="content-visibility: auto; contain-intrinsic-size: 0 100vh;">
+  <!-- Floating icons layer -->
+  <slot />
+  <div class="max-w-7xl mx-auto w-full items-center flex px-4 md:px-8">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center w-full">
+
+      <!-- Image: first in DOM (top on mobile), ordered by imagePosition on desktop -->
+      <div class:list={[
+        'feature-image flex justify-center',
+        isLeft ? 'md:order-1 from-left' : 'md:order-2',
+      ]}>
+        <div class="w-full aspect-square bg-neutral-800 rounded-2xl flex items-center justify-center overflow-hidden">
+          <slot name="image" />
+        </div>
+      </div>
+
+      <!-- Content: second in DOM (bottom on mobile), opposite side on desktop -->
+      <div class:list={[
+        'feature-content text-center md:text-left',
+        isLeft ? 'md:order-2' : 'md:order-1',
+      ]}>
+        <div class="flex items-center gap-4 mb-4 justify-center md:justify-start">
+          {titleIcon && (
+            <img src={titleIcon} alt="" class="w-12 h-12 md:w-16 md:h-16 object-contain" loading="lazy" decoding="async" />
+          )}
+          <h2 class="text-4xl sm:text-6xl md:text-6xl font-black text-neutral-50">{title}</h2>
+        </div>
+        <p class="text-neutral-200 text-lg md:text-xl leading-relaxed mb-6">{description}</p>
+        {buttonLabel && (
+          <a href={buttonHref} class:list={[
+            'inline-flex items-center justify-center gap-2 font-semibold rounded-xl transition-all',
+            'px-7 py-3 text-base',
+            buttonVariant === 'primary' && 'bg-brand-600 text-white shadow-[0_4px_14px_rgb(99_60_200/0.35)] hover:shadow-[0_6px_20px_rgb(99_60_200/0.45)] hover:-translate-y-0.5',
+            buttonVariant === 'secondary' && 'bg-neutral-800 text-neutral-50 hover:bg-neutral-700 hover:-translate-y-0.5',
+            buttonVariant === 'outline' && 'bg-transparent text-neutral-50 border-2 border-white/25 hover:border-white/50 hover:bg-white/5 hover:-translate-y-0.5',
+            buttonVariant === 'ghost' && 'bg-transparent text-neutral-200 hover:text-neutral-50 hover:bg-white/10',
+          ]}>
+            {buttonLabel}
+          </a>
+        )}
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script>
+  document.querySelectorAll('.feature-content, .feature-image').forEach(el => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          el.classList.add('is-visible');
+          observer.unobserve(el);
+        }
+      },
+      { threshold: 0.15 }
+    );
+    observer.observe(el);
+  });
+</script>

@@ -1,0 +1,90 @@
+---
+interface Props {
+  src: string;
+  position?: 'left' | 'right';
+  top?: string;
+  width?: string;
+  rotation?: string;
+  speed?: number;
+  opacity?: number;
+}
+
+const {
+  src,
+  position = 'left',
+  top = '20%',
+  width = 'clamp(8rem, 14vw, 14rem)',
+  rotation = '0deg',
+  speed = 0.3,
+  opacity = 0.12,
+} = Astro.props;
+---
+
+<style>
+  .floating-icon {
+    position: absolute;
+    z-index: 5;
+    pointer-events: none;
+    will-change: transform;
+    opacity: 0;
+    transition: opacity 0.6s var(--ease-standard);
+  }
+
+  .floating-icon.is-visible {
+    opacity: var(--icon-opacity);
+  }
+
+  .floating-icon img {
+    width: var(--icon-width);
+    height: auto;
+    transform: rotate(var(--icon-rotation));
+    filter: drop-shadow(0 10px 30px rgb(0 0 0 / 0.4));
+  }
+
+  .floating-icon.pos-left {
+    left: 3%;
+  }
+
+  .floating-icon.pos-right {
+    right: 3%;
+  }
+</style>
+
+<div
+  class:list={['floating-icon', `pos-${position}`]}
+  style={`--icon-opacity: ${opacity}; --icon-width: ${width}; --icon-rotation: ${rotation}; top: ${top};`}
+  data-speed={speed}
+>
+  <img src={src} alt="" width="256" height="256" loading="lazy" decoding="async" />
+</div>
+
+<script>
+  document.querySelectorAll('.floating-icon').forEach((el) => {
+    const speed = parseFloat(el.getAttribute('data-speed') || '0.3');
+    const section = el.closest('section');
+    if (!section) return;
+    let ticking = false;
+
+    function onScroll() {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        const rect = section.getBoundingClientRect();
+        const viewH = window.innerHeight;
+        if (rect.bottom < -200 || rect.top > viewH + 200) {
+          el.classList.remove('is-visible');
+          ticking = false;
+          return;
+        }
+        el.classList.add('is-visible');
+        const progress = (viewH - rect.top) / (viewH + rect.height);
+        const offset = (progress - 0.5) * 120 * speed;
+        el.style.transform = `translateY(${offset}px)`;
+        ticking = false;
+      });
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  });
+</script>

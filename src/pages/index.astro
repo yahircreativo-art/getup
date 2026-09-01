@@ -1,14 +1,40 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Hero from '../components/sections/hero.astro'
-import About from '../components/sections/about.astro'
-import Services from '../components/sections/services.astro'
+import FeatureSection from '../components/FeatureSection.astro'
+import FloatingIcon from '../components/FloatingIcon.astro'
 import Faq from '../components/sections/faq.astro'
+import adsIcon from '../assets/ads.webp'
+import mailIcon from '../assets/mail.webp'
+import callsIcon from '../assets/calls.webp'
+import messageIcon from '../assets/message.webp'
 ---
 
 <Layout>
-	<Hero/>
-	<About/>
-	<Services/>
+	<Hero>
+		<FloatingIcon src={adsIcon.src} position="left" top="25%" rotation="-12deg" opacity={0.08} />
+		<FloatingIcon src={callsIcon.src} position="right" top="45%" rotation="8deg" opacity={0.08} />
+	</Hero>
+
+	<FeatureSection
+		title="LEVEL UP"
+		description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+		imagePosition="right"
+		titleIcon={adsIcon.src}
+		buttonLabel="Learn more"
+		buttonHref="#services"
+	>
+		<FloatingIcon src={mailIcon.src} position="left" top="30%" rotation="-5deg" opacity={0.08} />
+	</FeatureSection>
+
+	<FeatureSection
+		title="SET UP ONLINE"
+		description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+		imagePosition="left"
+		titleIcon={mailIcon.src}
+	>
+		<FloatingIcon src={messageIcon.src} position="right" top="35%" rotation="10deg" opacity={0.08} />
+	</FeatureSection>
+
 	<Faq/>
 </Layout>

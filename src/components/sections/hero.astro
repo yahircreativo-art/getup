@@ -1,15 +1,109 @@
-<section id="hero-section" class="flex justify-center overflow-hidden" style="background: radial-gradient(circle at center 5%, var(--color-brand-600), var(--color-brand-700) 20%, var(--color-neutral-950) 65%)">
-    <div class="w-fit h-screen items-center flex container justify-center text-center">
-        <h1 class="text-6xl sm:text-8xl md:text-9xl font-black w-11/12 text-neutral-50">GET UP ONLINE</h1>
+---
+import adsImg from '../../assets/ads.webp'
+import callsImg from '../../assets/calls.webp'
+import mailImg from '../../assets/mail.webp'
+import messageImg from '../../assets/message.webp'
+import Button from '../Button.astro'
+---
+
+<section id="hero" class="relative flex justify-center overflow-hidden" style="background: radial-gradient(circle at center 5%, var(--color-brand-600), var(--color-brand-700) 20%, var(--color-neutral-950) 65%)">
+
+  <!-- Floating icons layer -->
+  <slot />
+
+  <!-- Content -->
+  <div class="relative z-10 w-full h-screen items-center flex justify-center text-center px-4 md:px-8">
+    <div class="max-w-7xl mx-auto w-full">
+    <div class="flex flex-col items-center gap-6 md:gap-8">
+      <h1 class="hero-title text-5xl sm:text-6xl md:text-7xl font-black w-11/12 text-neutral-50 drop-shadow-2xl">
+        GET UP YOUR BUSINESS ONLINE
+      </h1>
+      <p class="hero-subtitle text-neutral-200 text-md md:text-xl max-w-2xl leading-relaxed opacity-0">
+        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugit accusantium cupiditate deleniti itaque possimus a quas magnam expedita modi facere.
+      </p>
+      <div class="hero-cta flex flex-col sm:flex-row gap-4 opacity-0">
+        <Button variant="primary" size="md" href="#contact">
+          CONTACT US
+        </Button>
+      </div>
     </div>
+    </div>
+  </div>
 </section>
 
-<script>
-  const heroSection = document.getElementById('hero-section');
-  
-  window.addEventListener('scroll', () => {
-    const scrollY = window.scrollY;
-    heroSection?.style.setProperty('background-position', `center ${scrollY * 0.15}px`);
-    heroSection?.style.setProperty('background-size', '100% auto');
-  });
-</script>
+<style>
+  /* Title entrance */
+  .hero-title {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: hero-fade-in 0.5s var(--ease-standard) 0.1s forwards;
+  }
+
+  /* Subtitle entrance */
+  .hero-subtitle {
+    transform: translateY(15px);
+    animation: hero-fade-in 0.7s var(--ease-standard) 0.2s forwards;
+  }
+
+  /* CTA entrance */
+  .hero-cta {
+    transform: translateY(15px);
+    animation: hero-fade-in 0.7s var(--ease-standard) 0.3s forwards;
+  }
+
+  @keyframes hero-fade-in {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Image positions */
+  .hero-img {
+    position: absolute;
+    z-index: 1;
+    will-change: transform;
+    object-fit: cover;
+    box-shadow: 0 20px 50px rgb(0 0 0 / 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .hero-img-1 {
+    top: 12%;
+    left: 5%;
+    transform: translateY(0) rotate(-6deg);
+    animation: img-enter 0.9s var(--ease-standard) 0.2s forwards;
+  }
+
+  .hero-img-2 {
+    top: 18%;
+    right: 4%;
+    transform: translateY(0) rotate(4deg);
+    animation: img-enter 0.9s var(--ease-standard) 0.4s forwards;
+  }
+
+  .hero-img-3 {
+    bottom: 18%;
+    left: 8%;
+    transform: translateY(0) rotate(5deg);
+    animation: img-enter 0.9s var(--ease-standard) 0.6s forwards;
+  }
+
+  .hero-img-4 {
+    bottom: 12%;
+    right: 6%;
+    transform: translateY(0) rotate(-3deg);
+    animation: img-enter 0.9s var(--ease-standard) 0.8s forwards;
+  }
+
+  @keyframes img-enter {
+    from {
+      opacity: 0;
+      transform: translateY(30px) rotate(var(--rotate, 0deg));
+    }
+    to {
+      opacity: 0.85;
+      transform: translateY(0) rotate(var(--rotate, 0deg));
+    }
+  }
+</style>
