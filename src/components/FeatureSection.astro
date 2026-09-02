@@ -82,7 +82,7 @@ const isLeft = imagePosition === 'left';
         <p class="text-neutral-200 text-lg md:text-xl leading-relaxed mb-6">{description}</p>
         {buttonLabel && (
           <a href={buttonHref} class:list={[
-            'inline-flex items-center justify-center gap-2 font-semibold rounded-xl transition-all',
+            'inline-flex items-center justify-center gap-2 font-semibold rounded-full transition-all',
             'px-7 py-3 text-base',
             buttonVariant === 'primary' && 'bg-brand-600 text-white shadow-[0_4px_14px_rgb(99_60_200/0.35)] hover:shadow-[0_6px_20px_rgb(99_60_200/0.45)] hover:-translate-y-0.5',
             buttonVariant === 'secondary' && 'bg-neutral-800 text-neutral-50 hover:bg-neutral-700 hover:-translate-y-0.5',
