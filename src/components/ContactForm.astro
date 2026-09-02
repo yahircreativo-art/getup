@@ -1,0 +1,300 @@
+---
+import Button from './Button.astro';
+
+interface Props {
+  class?: string;
+}
+
+const { class: className = '' } = Astro.props;
+---
+
+<style>
+  .form-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.375rem;
+  }
+
+  .form-label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--color-neutral-200);
+  }
+
+  .form-label .required {
+    color: #ef4444;
+    margin-left: 2px;
+  }
+
+  .form-input,
+  .form-textarea {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    color: var(--color-neutral-50);
+    background-color: var(--color-neutral-800);
+    border: 2px solid transparent;
+    border-radius: 0.75rem;
+    outline: none;
+    transition:
+      border-color 0.2s var(--ease-standard),
+      box-shadow 0.2s var(--ease-standard);
+  }
+
+  .form-input::placeholder,
+  .form-textarea::placeholder {
+    color: var(--color-neutral-500);
+  }
+
+  .form-input:focus,
+  .form-textarea:focus {
+    border-color: var(--color-brand-600);
+    box-shadow: 0 0 0 3px rgb(99 60 200 / 0.25);
+  }
+
+  .form-input.error,
+  .form-textarea.error {
+    border-color: #ef4444;
+    box-shadow: 0 0 0 3px rgb(239 68 68 / 0.2);
+  }
+
+  .form-textarea {
+    resize: vertical;
+    min-height: 120px;
+  }
+
+  .form-error {
+    font-size: 0.75rem;
+    color: #ef4444;
+    display: none;
+  }
+
+  .form-error.visible {
+    display: block;
+  }
+
+  .form-success {
+    padding: 1rem;
+    background-color: rgb(34 197 94 / 0.1);
+    border: 1px solid rgb(34 197 94 / 0.3);
+    border-radius: 0.75rem;
+    color: #22c55e;
+    font-weight: 500;
+    display: none;
+  }
+
+  .form-success.visible {
+    display: block;
+  }
+</style>
+
+<form id="contact-form" class:list={['flex flex-col gap-5', className]} action="https://formsubmit.co/enrigue@wrapsandprints.com" method="POST">
+  <!-- Name -->
+  <div class="form-field">
+    <label class="form-label" for="name">
+      Name<span class="required">*</span>
+    </label>
+    <input
+      type="text"
+      id="name"
+      name="name"
+      class="form-input"
+      placeholder="John Doe"
+      required
+      minlength="2"
+      maxlength="100"
+    />
+    <span class="form-error" id="name-error">Please enter your name (min. 2 characters)</span>
+  </div>
+
+  <!-- Phone -->
+  <div class="form-field">
+    <label class="form-label" for="phone">
+      Phone<span class="required">*</span>
+    </label>
+    <input
+      type="tel"
+      id="phone"
+      name="phone"
+      class="form-input"
+      placeholder="+1 (555) 123-4567"
+      required
+      maxlength="20"
+    />
+    <span class="form-error" id="phone-error">Please enter a valid phone number</span>
+  </div>
+
+  <!-- Email -->
+  <div class="form-field">
+    <label class="form-label" for="email">
+      Email<span class="required">*</span>
+    </label>
+    <input
+      type="email"
+      id="email"
+      name="email"
+      class="form-input"
+      placeholder="john@company.com"
+      required
+      maxlength="254"
+    />
+    <span class="form-error" id="email-error">Please enter a valid email address</span>
+  </div>
+
+  <!-- Business Description -->
+  <div class="form-field">
+    <label class="form-label" for="description">
+      Business Description<span class="required">*</span>
+    </label>
+    <textarea
+      id="description"
+      name="description"
+      class="form-textarea"
+      placeholder="Tell us about your business and how we can help you..."
+      required
+      minlength="10"
+      maxlength="2000"
+      rows="5"
+    ></textarea>
+    <span class="form-error" id="description-error">Please describe your business (min. 10 characters)</span>
+  </div>
+
+  <!-- Success message -->
+  <div class="form-success" id="form-success">
+    ✓ Thank you! Your message has been sent successfully.
+  </div>
+
+  <!-- Honeypot field for spam protection -->
+  <div style="position: absolute; left: -9999px; opacity: 0;" aria-hidden="true">
+    <input type="text" name="_honey" tabindex="-1" autocomplete="off" />
+  </div>
+
+  <!-- FormSubmit.co options -->
+  <input type="hidden" name="_template" value="table" />
+  <input type="hidden" name="_subject" value="New Contact Form Submission" />
+  <input type="hidden" name="_ajax" value="true" />
+
+  <!-- Submit -->
+  <Button variant="primary" size="lg" class="w-full" type="submit">
+    Send Message
+  </Button>
+</form>
+
+<script>
+  const form = document.getElementById('contact-form') as HTMLFormElement;
+  const nameInput = document.getElementById('name') as HTMLInputElement;
+  const phoneInput = document.getElementById('phone') as HTMLInputElement;
+  const emailInput = document.getElementById('email') as HTMLInputElement;
+  const descInput = document.getElementById('description') as HTMLTextAreaElement;
+  const successMsg = document.getElementById('form-success');
+
+  function showError(id: string) {
+    const el = document.getElementById(id);
+    el?.classList.add('visible');
+  }
+
+  function hideError(id: string) {
+    const el = document.getElementById(id);
+    el?.classList.remove('visible');
+  }
+
+  function setError(input: HTMLInputElement | HTMLTextAreaElement, errorId: string) {
+    input.classList.add('error');
+    showError(errorId);
+  }
+
+  function clearError(input: HTMLInputElement | HTMLTextAreaElement, errorId: string) {
+    input.classList.remove('error');
+    hideError(errorId);
+  }
+
+  function isValidEmail(email: string): boolean {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  }
+
+  function isValidPhone(phone: string): boolean {
+    return /^[\+]?[\d\s\-\(\)]{7,}$/.test(phone);
+  }
+
+  // Clear errors on input
+  nameInput?.addEventListener('input', () => clearError(nameInput, 'name-error'));
+  phoneInput?.addEventListener('input', () => clearError(phoneInput, 'phone-error'));
+  emailInput?.addEventListener('input', () => clearError(emailInput, 'email-error'));
+  descInput?.addEventListener('input', () => clearError(descInput, 'description-error'));
+
+  // Rate limiting: prevent multiple submissions within 30 seconds
+  let lastSubmitTime = 0;
+  const RATE_LIMIT_MS = 30000;
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    // Rate limit check
+    const now = Date.now();
+    if (now - lastSubmitTime < RATE_LIMIT_MS) {
+      alert('Please wait 30 seconds before submitting again.');
+      return;
+    }
+
+    let valid = true;
+
+    // Name
+    if (nameInput.value.trim().length < 2) {
+      setError(nameInput, 'name-error');
+      valid = false;
+    } else {
+      clearError(nameInput, 'name-error');
+    }
+
+    // Phone
+    if (!isValidPhone(phoneInput.value.trim())) {
+      setError(phoneInput, 'phone-error');
+      valid = false;
+    } else {
+      clearError(phoneInput, 'phone-error');
+    }
+
+    // Email
+    if (!isValidEmail(emailInput.value.trim())) {
+      setError(emailInput, 'email-error');
+      valid = false;
+    } else {
+      clearError(emailInput, 'email-error');
+    }
+
+    // Description
+    if (descInput.value.trim().length < 10) {
+      setError(descInput, 'description-error');
+      valid = false;
+    } else {
+      clearError(descInput, 'description-error');
+    }
+
+    if (valid) {
+      try {
+        lastSubmitTime = Date.now();
+        const formData = new FormData(form);
+        const ajaxUrl = form.action.replace('formsubmit.co/', 'formsubmit.co/ajax/');
+        const response = await fetch(ajaxUrl, {
+          method: 'POST',
+          body: formData,
+          headers: { 'Accept': 'application/json' }
+        });
+
+        if (response.ok) {
+          successMsg?.classList.add('visible');
+          form.reset();
+          setTimeout(() => {
+            successMsg?.classList.remove('visible');
+          }, 5000);
+        } else {
+          alert('Something went wrong. Please try again later.');
+          lastSubmitTime = 0; // Reset on error so they can retry
+        }
+      } catch {
+        alert('Something went wrong. Please try again later.');
+        lastSubmitTime = 0; // Reset on error so they can retry
+      }
+    }
+  });
+</script>

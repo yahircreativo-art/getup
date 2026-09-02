@@ -2,22 +2,43 @@
 import '../styles/design-system.css'
 import Navbar from '../components/navbar.astro'
 import Footer from '../components/footer.astro'
+import SEO from '../components/SEO.astro'
+import { siteConfig } from '../config/site.config'
 import logo from '../assets/getup.svg'
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  canonical?: string;
+  type?: 'website' | 'article' | 'business';
+  schema?: Record<string, any>;
+}
+
+const {
+  title = siteConfig.title,
+  description = siteConfig.description,
+  image = '/og-default.png',
+  canonical = siteConfig.url,
+  type = 'website',
+  schema,
+} = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="es">
 	<head>
 		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<link rel="icon" href="/favicon.ico" />
 		<meta name="generator" content={Astro.generator} />
 
+		<!-- SEO Component -->
+		<SEO {title} {description} {image} {canonical} {type} {schema} />
+
 		<!-- Preload self-hosted font -->
 		<link rel="preload" href="/fonts/montserrat-latin.woff2" as="font" type="font/woff2" crossorigin />
-
-		<title>Astro Basics</title>
 	</head>
 	<body class="slide-down bg-neutral-950">
 		<Navbar logo={logo.src} logoAlt="getup logo" />
