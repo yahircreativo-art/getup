@@ -1,9 +1,8 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Hero from '../components/sections/hero.astro'
+import ValueProposition from '../components/ValueProposition.astro'
 import FeatureSection from '../components/FeatureSection.astro'
-import FloatingIcon from '../components/FloatingIcon.astro'
-import Faq from '../components/sections/faq.astro'
 import ContactForm from '../components/ContactForm.astro'
 import adsIcon from '../assets/ads.webp'
 import mailIcon from '../assets/mail.webp'
@@ -17,32 +16,27 @@ import messageIcon from '../assets/message.webp'
 	image="/og-home.png"
 	type="business"
 >
-	<Hero>
-		<FloatingIcon src={adsIcon.src} position="left" top="25%" rotation="-12deg" opacity={0.08} />
-		<FloatingIcon src={callsIcon.src} position="right" top="45%" rotation="8deg" opacity={0.08} />
-	</Hero>
+	<Hero/>
+
+	<ValueProposition />
 
 	<FeatureSection
-		title="LEVEL UP"
-		description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+		title="SET UP"
+		description="Every business needs a great website — that's your Set Up. Beautiful design, great first impression."
 		imagePosition="right"
 		titleIcon={adsIcon.src}
 		buttonLabel="Learn more"
 		buttonHref="#services"
 	>
-		<FloatingIcon src={mailIcon.src} position="left" top="30%" rotation="-5deg" opacity={0.08} />
 	</FeatureSection>
 
 	<FeatureSection
-		title="SET UP ONLINE"
-		description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+		title="LEVEL UP"
+		description="Then we Level Up — helping your business show up locally, so real customers find you, call you, and choose you."
 		imagePosition="left"
 		titleIcon={mailIcon.src}
 	>
-		<FloatingIcon src={messageIcon.src} position="right" top="35%" rotation="10deg" opacity={0.08} />
 	</FeatureSection>
-
-	<Faq/>
 
 	<section id="contact" class="py-20 px-4 md:px-8">
 		<div class="max-w-2xl mx-auto">

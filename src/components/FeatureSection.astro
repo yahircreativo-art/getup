@@ -1,6 +1,7 @@
 ---
 interface Props {
   title: string;
+  subtitle?: string;
   description: string;
   imagePosition?: 'left' | 'right';
   titleIcon?: string;
@@ -11,6 +12,7 @@ interface Props {
 
 const {
   title,
+  subtitle,
   description,
   imagePosition = 'right',
   titleIcon,
@@ -68,7 +70,6 @@ const isLeft = imagePosition === 'left';
         </div>
       </div>
 
-      <!-- Content: second in DOM (bottom on mobile), opposite side on desktop -->
       <div class:list={[
         'feature-content md:text-left',
         isLeft ? 'md:order-2' : 'md:order-1',
@@ -79,6 +80,7 @@ const isLeft = imagePosition === 'left';
           )}
           <h2 class="text-4xl sm:text-6xl md:text-6xl font-black text-neutral-50">{title}</h2>
         </div>
+        <h3 class="text-2xl text-brand-400">{subtitle}</h3>
         <p class="text-neutral-200 text-lg md:text-xl leading-relaxed mb-6">{description}</p>
         {buttonLabel && (
           <a href={buttonHref} class:list={[
