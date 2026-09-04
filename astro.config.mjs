@@ -4,7 +4,7 @@ import { siteConfig } from "./src/config/site.config";
 
 export default defineConfig({
   site: siteConfig.url,
-  base: "/getup",
+  output: "static",
   vite: {
     plugins: [tailwindcss()],
   },
