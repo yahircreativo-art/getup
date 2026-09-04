@@ -3,7 +3,7 @@ export const siteConfig = {
   url: 'https://ugetup.com',
   description: 'Take your business to the next level with GetUp. We build professional websites for fitness and wellness businesses.',
   locale: 'en_US',
-  ogImage: '/og-default.png',
+  ogImage: '/banner.webp',
   logo: '/getup-icon.svg',
   social: {
     github: 'https://github.com/yahircreativo-art/getup',
