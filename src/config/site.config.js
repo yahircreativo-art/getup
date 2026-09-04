@@ -10,8 +10,8 @@ export const siteConfig = {
   },
   business: {
     type: 'LocalBusiness',
-    addressCountry: 'MX',
+    addressCountry: 'US',
     contactType: 'customer service',
-    languages: ['Spanish', 'English'],
+    languages: ['English', 'Spanish'],
   },
 };
