@@ -17,7 +17,6 @@ interface Props {
 
 const {
   title = siteConfig.title,
-  description = siteConfig.description,
   image = '/og-default.png',
   canonical = siteConfig.url,
   type = 'website',
@@ -34,7 +33,7 @@ const {
 		<meta name="generator" content={Astro.generator} />
 
 		<!-- SEO Component -->
-		<SEO {title} {description} {image} {canonical} {type} {schema} />
+		<SEO {title} {image} {canonical} {type} {schema} />
 
 		<!-- Preload self-hosted font -->
 		<link rel="preload" href="/fonts/montserrat-latin.woff2" as="font" type="font/woff2" crossorigin />
