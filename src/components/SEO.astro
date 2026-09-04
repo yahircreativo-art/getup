@@ -13,55 +13,45 @@ interface Props {
 const {
   title = siteConfig.title,
   description = siteConfig.description,
-  image = '/og-default.png',
+  image = siteConfig.ogImage,
   canonical = siteConfig.url,
   type = 'website',
   schema,
 } = Astro.props;
 
 const pageTitle = title === siteConfig.title ? title : `${title} | ${siteConfig.title}`;
-const fullImage = `${siteConfig.url}${image}`;
+const fullImage = image.startsWith('http') ? image : `${siteConfig.url}${image}`;
+const socials = Object.values(siteConfig.social || {});
 
-// Default Organization schema
+// Schema from site.config.business
+const business = siteConfig.business;
 const defaultSchema = {
   '@context': 'https://schema.org',
-  '@type': 'Organization',
-  name: siteConfig.title,
-  url: siteConfig.url,
-  logo: `${siteConfig.url}/getup-icon.svg`,
-  description: siteConfig.description,
-  sameAs: [siteConfig.github],
-};
-
-// LocalBusiness schema (better for fitness/wellness businesses)
-const localBusinessSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'LocalBusiness',
+  '@type': business?.type || 'Organization',
   name: siteConfig.title,
   description: siteConfig.description,
   url: siteConfig.url,
   image: fullImage,
-  address: {
-    '@type': 'PostalAddress',
-    addressCountry: 'MX',
-  },
-  contactPoint: {
-    '@type': 'ContactPoint',
-    contactType: 'customer service',
-    availableLanguage: ['Spanish', 'English'],
-  },
-  sameAs: [siteConfig.github],
+  logo: `${siteConfig.url}${siteConfig.logo}`,
+  ...(business?.type === 'LocalBusiness' && {
+    address: { '@type': 'PostalAddress', addressCountry: business.addressCountry },
+    contactPoint: {
+      '@type': 'ContactPoint',
+      contactType: business.contactType,
+      availableLanguage: business.languages,
+    },
+  }),
+  sameAs: socials,
 };
 
-const schemaData = schema || (type === 'business' ? localBusinessSchema : defaultSchema);
+const schemaData = schema || defaultSchema;
 ---
 
-<!-- SEO Meta Tags -->
 <title>{pageTitle}</title>
 <meta name="description" content={description} />
-<link rel="canonical" href={canonical} />
-<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
 <meta name="author" content={siteConfig.title} />
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
+<link rel="canonical" href={canonical} />
 
 <!-- Open Graph -->
 <meta property="og:type" content={type === 'article' ? 'article' : 'website'} />
@@ -72,7 +62,7 @@ const schemaData = schema || (type === 'business' ? localBusinessSchema : defaul
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
 <meta property="og:site_name" content={siteConfig.title} />
-<meta property="og:locale" content="es_MX" />
+<meta property="og:locale" content={siteConfig.locale} />
 
 <!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image" />
@@ -80,5 +70,5 @@ const schemaData = schema || (type === 'business' ? localBusinessSchema : defaul
 <meta name="twitter:description" content={description} />
 <meta name="twitter:image" content={fullImage} />
 
-<!-- JSON-LD Structured Data -->
+<!-- JSON-LD -->
 <script type="application/ld+json" set:html={JSON.stringify(schemaData)} />

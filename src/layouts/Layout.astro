@@ -15,27 +15,17 @@ interface Props {
   schema?: Record<string, any>;
 }
 
-const {
-  title = siteConfig.title,
-  image = '/og-default.png',
-  canonical = siteConfig.url,
-  type = 'website',
-  schema,
-} = Astro.props;
+const { title, description, image, canonical, type, schema } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="es">
+<html lang="en-US">
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<link rel="icon" type="image/svg+xml" href={`${import.meta.env.BASE_URL}getup-icon.svg`} />
+		<link rel="icon" type="image/svg+xml" href={`${import.meta.env.BASE_URL}${siteConfig.logo}`} />
 		<meta name="generator" content={Astro.generator} />
-
-		<!-- SEO Component -->
-		<SEO {title} {image} {canonical} {type} {schema} />
-
-		<!-- Preload self-hosted font -->
+		<SEO {title} {description} {image} {canonical} {type} {schema} />
 		<link rel="preload" href="/fonts/montserrat-latin.woff2" as="font" type="font/woff2" crossorigin />
 	</head>
 	<body class="slide-down bg-neutral-950">
