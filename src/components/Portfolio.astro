@@ -1,0 +1,123 @@
+---
+import portfolioData from '../data/portfolio.json';
+---
+
+<section id="portfolio" class="py-24 px-4 md:px-8 bg-neutral-950">
+  <div class="max-w-7xl mx-auto w-full">
+    <!-- Section Header -->
+    <div class="text-center mb-16">
+      <span class="text-brand-400 font-semibold text-sm uppercase tracking-wider">Our Work</span>
+      <h2 class="text-4xl sm:text-5xl md:text-6xl font-black text-neutral-50 mt-4">
+        PORTFOLIO
+      </h2>
+      <p class="text-neutral-300 text-lg mt-4 max-w-2xl mx-auto">
+        Check out some of the websites we've built for our clients.
+      </p>
+    </div>
+
+    <!-- 3x3 Grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+      {portfolioData.map((project) => (
+        <a
+          href={project.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="portfolio-card group"
+        >
+          <!-- Image -->
+          <div class="portfolio-image">
+            <img
+              src={project.image}
+              alt={project.title}
+              class="w-full h-full object-cover"
+              loading="lazy"
+              decoding="async"
+            />
+            <!-- Overlay on hover -->
+            <div class="portfolio-overlay">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+              </svg>
+            </div>
+          </div>
+
+          <!-- Info -->
+          <div class="portfolio-info">
+            <h3 class="portfolio-title">{project.title}</h3>
+            <p class="portfolio-description">{project.description}</p>
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .portfolio-card {
+    display: flex;
+    flex-direction: column;
+    border-radius: 1rem;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    transition: all 0.3s var(--ease-standard);
+    text-decoration: none;
+  }
+
+  .portfolio-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(99, 60, 200, 0.4);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  }
+
+  .portfolio-image {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    background: var(--color-neutral-800);
+  }
+
+  .portfolio-image img {
+    transition: transform 0.4s var(--ease-standard);
+  }
+
+  .portfolio-card:hover .portfolio-image img {
+    transform: scale(1.05);
+  }
+
+  .portfolio-overlay {
+    position: absolute;
+    inset: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s var(--ease-standard);
+    color: white;
+  }
+
+  .portfolio-card:hover .portfolio-overlay {
+    opacity: 1;
+  }
+
+  .portfolio-info {
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .portfolio-title {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: var(--color-neutral-50);
+  }
+
+  .portfolio-description {
+    font-size: 0.875rem;
+    line-height: 1.5;
+    color: var(--color-neutral-400);
+  }
+</style>

@@ -105,7 +105,9 @@ const { logo, logoAlt = "Logo" } = Astro.props;
       <!-- Logo -->
       <div class="flex-shrink-0">
         {logo ? (
-          <img src={logo} alt={logoAlt} class="h-10 sm:h-12 md:h-14 w-auto" />
+          <a href="/">
+            <img src={logo} alt={logoAlt} class="h-10 sm:h-12 md:h-14 w-auto" />
+          </a>
         ) : (
           <div class="text-xl font-black text-brand-500">LOGO</div>
         )}
@@ -113,10 +115,11 @@ const { logo, logoAlt = "Logo" } = Astro.props;
 
       <!-- Desktop Links -->
       <div class="hidden md:flex justify-center gap-8">
-        <a href="#" class="nav-link text-neutral-50 font-semibold">HOME</a>
+        <a href="/" class="nav-link text-neutral-50 font-semibold">HOME</a>
+        <a href="/portfolio" class="nav-link text-neutral-50 font-semibold">PORTFOLIO</a>
         <a href="#" class="nav-link text-neutral-50 font-semibold">SERVICES</a>
         <a href="#" class="nav-link text-neutral-50 font-semibold">ABOUT</a>
-        <a href="#" class="nav-link text-neutral-50 font-semibold">CONTACT</a>
+        <a href="#contact" class="nav-link text-neutral-50 font-semibold">CONTACT</a>
       </div>
 
       <!-- Empty Column -->
@@ -138,9 +141,10 @@ const { logo, logoAlt = "Logo" } = Astro.props;
     <div class="px-4 md:px-8 py-4">
       <div class="max-w-7xl mx-auto w-full space-y-3 flex flex-col">
         <a href="#" class="mobile-link text-neutral-50 font-medium text-lg">Home</a>
+        <a href="/portfolio" class="mobile-link text-neutral-50 font-medium text-lg">Portfolio</a>
         <a href="#" class="mobile-link text-neutral-50 font-medium text-lg">Services</a>
         <a href="#" class="mobile-link text-neutral-50 font-medium text-lg">About</a>
-        <a href="#" class="mobile-link text-neutral-50 font-medium text-lg">Contact</a>
+        <a href="#contact" class="mobile-link text-neutral-50 font-medium text-lg">Contact</a>
       </div>
     </div>
   </div>
