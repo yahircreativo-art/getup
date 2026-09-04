@@ -6,8 +6,7 @@ import FeatureSection from '../components/FeatureSection.astro'
 import ContactForm from '../components/ContactForm.astro'
 import adsIcon from '../assets/ads.webp'
 import mailIcon from '../assets/mail.webp'
-import callsIcon from '../assets/calls.webp'
-import messageIcon from '../assets/message.webp'
+import Logo from '../assets/getup.svg'
 ---
 
 <Layout
@@ -40,6 +39,7 @@ import messageIcon from '../assets/message.webp'
 
 	<section id="contact" class="py-20 px-4 md:px-8">
 		<div class="max-w-2xl mx-auto">
+			<img class="h-32 mx-auto mb-8" src={Logo.src} alt="">
 			<h2 class="text-4xl sm:text-5xl font-black text-neutral-50 text-center mb-4">Get in Touch</h2>
 			<p class="text-neutral-200 text-lg text-center mb-10">Ready to take your business to the next level? Fill out the form below and we'll get back to you shortly.</p>
 			<ContactForm />
