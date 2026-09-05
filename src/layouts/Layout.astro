@@ -13,9 +13,10 @@ interface Props {
   canonical?: string;
   type?: 'website' | 'article' | 'business';
   schema?: Record<string, any>;
+  robots?: string;
 }
 
-const { title, description, image, canonical, type, schema } = Astro.props;
+const { title, description, image, canonical, type, schema, robots } = Astro.props;
 ---
 
 <!doctype html>
@@ -25,7 +26,7 @@ const { title, description, image, canonical, type, schema } = Astro.props;
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="icon" type="image/svg+xml" href="/getup-icon.svg" />
 		<meta name="generator" content={Astro.generator} />
-		<SEO {title} {description} {image} {canonical} {type} {schema} />
+		<SEO {title} {description} {image} {canonical} {type} {schema} {robots} />
 		<link rel="preload" href="/fonts/montserrat-latin.woff2" as="font" type="font/woff2" crossorigin />
 	</head>
 	<body class="slide-down bg-neutral-950">
