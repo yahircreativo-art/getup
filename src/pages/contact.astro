@@ -1,8 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import ContactForm from '../components/ContactForm.astro';
-import Logo from '../assets/getup.svg';
-import Message from '../assets/message.webp';
 ---
 
 <Layout
@@ -10,19 +8,11 @@ import Message from '../assets/message.webp';
   description="Ready to take your business to the next level? Get in touch with GetUp and let's build your online presence together."
   image="/banner.webp"
 >
-  <section id="contact" class="pt-32 pb-20 px-4 md:px-8">
-    <div class="max-w-7xl mx-auto w-full">
-      <!-- Page Header -->
-      <div class="text-center mb-16">
-        <h1 class="text-4xl sm:text-5xl md:text-6xl font-black text-neutral-50 mb-4">GET IN TOUCH</h1>
-        <p class="text-neutral-200 text-lg max-w-2xl mx-auto">
-          Ready to take your business to the next level? Fill out the form and we'll get back to you shortly.
-        </p>
-      </div>
-
-      <ContactForm />
-      
-
-    </div>
-  </section>
+  <section id="contact" class="px-4 md:px-8 min-h-screen flex items-center justify-center py-24">
+		<div class="max-w-2xl mx-auto w-full">
+			<h2 class="text-4xl sm:text-5xl font-black text-neutral-50 text-center mb-4">GET IT TOUCH</h2>
+			<p class="text-neutral-200 text-lg text-center mb-10">Ready to take your business to the next level? Fill out the form below and we'll get back to you shortly.</p>
+			<ContactForm />
+		</div>
+	</section>
 </Layout>
