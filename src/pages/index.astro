@@ -4,11 +4,7 @@ import Hero from '../components/sections/hero.astro'
 import ValueProposition from '../components/ValueProposition.astro'
 import FeatureSection from '../components/FeatureSection.astro'
 import ContactForm from '../components/ContactForm.astro'
-import adsIcon from '../assets/ads.webp'
-import mailIcon from '../assets/mail.webp'
 import Logo from '../assets/getup.svg'
-import Mockup from '../assets/mockup-laptop.webp'
-import Calendly from '../assets/calendly.webp'
 ---
 
 <Layout
@@ -28,7 +24,6 @@ import Calendly from '../assets/calendly.webp'
 		buttonLabel="Learn more"
 		buttonHref="#services"
 	>
-	<img slot="image" src={Mockup.src} alt="Website mockup on laptop" />
 	</FeatureSection>
 
 	<FeatureSection
@@ -36,7 +31,6 @@ import Calendly from '../assets/calendly.webp'
 		description="Then we Level Up — helping your business show up locally, so real customers find you, call you, and choose you."
 		imagePosition="left"
 	>
-		<img slot="image" src={Calendly.src} alt="Calendly screenshot" />
 	</FeatureSection>
 
 	<section id="contact" class="py-20 px-4 md:px-8">
