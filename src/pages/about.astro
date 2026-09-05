@@ -1,0 +1,42 @@
+---
+import Layout from '../layouts/Layout.astro';
+import FeatureSection from '../components/FeatureSection.astro';
+import Mockup from '../assets/mockup-laptop.webp';
+import Calendly from '../assets/calendly.webp';
+import Calls from '../assets/calls.webp';
+---
+
+<Layout
+  title="Getup - About"
+  description="GetUp is a web studio that helps local businesses get online and get found. Meet the team and the way we work."
+  image="/banner.webp"
+>
+  <div class="pt-24">
+    <FeatureSection
+      title="WHO WE ARE"
+      subtitle="A web studio for local businesses"
+      description="GetUp was born from a simple idea: every local business deserves a great website without needing a big agency budget. We design and build sites that make a great first impression — and then we make sure real customers can actually find you."
+      imagePosition="right"
+    >
+      <img slot="image" src={Mockup.src} alt="Website mockup on laptop" />
+    </FeatureSection>
+
+    <FeatureSection
+      title="HOW WE HELP"
+      subtitle="From first click to first call"
+      description="We handle everything your business needs to succeed online: a beautiful website, local visibility on Google, booking and contact tools that turn visitors into customers. You focus on your business — we take care of the rest."
+      imagePosition="left"
+    >
+      <img slot="image" src={Calendly.src} alt="Online booking calendar" />
+    </FeatureSection>
+
+    <FeatureSection
+      title="WHY GETUP"
+      subtitle="Set Up. Level Up. Get Up."
+      description="We don't just launch your site and disappear. We set up your online presence, level up your local reach, and stay by your side as your business grows. Your success is the only metric we care about."
+      imagePosition="right"
+    >
+      <img slot="image" src={Calls.src} alt="Customer calls" />
+    </FeatureSection>
+  </div>
+</Layout>

@@ -1,0 +1,47 @@
+[
+  {
+    "title": "Website Design & Development",
+    "description": "Custom, responsive websites built to convert visitors into customers. Fast, beautiful, and made to impress from the first click.",
+    "icon": "monitor"
+  },
+  {
+    "title": "Local SEO",
+    "description": "Show up when local customers search. We optimize your Google presence so real people nearby find you, call you, and choose you.",
+    "icon": "search"
+  },
+  {
+    "title": "Google Business Profile",
+    "description": "A fully optimized Google Business Profile with photos, hours, reviews, and posts — your storefront on the world's biggest search engine.",
+    "icon": "map-pin"
+  },
+  {
+    "title": "Online Booking & Scheduling",
+    "description": "Let clients book appointments straight from your website with Calendly or your favorite tool. Fewer missed calls, more booked sessions.",
+    "icon": "calendar"
+  },
+  {
+    "title": "Contact Forms & Lead Capture",
+    "description": "Custom forms that send inquiries directly to your inbox, so every potential customer gets a fast response — no lead left behind.",
+    "icon": "mail"
+  },
+  {
+    "title": "Website Analytics & Insights",
+    "description": "Know exactly how many people visit, where they come from, and what they do. Clear monthly reports, no jargon.",
+    "icon": "chart"
+  },
+  {
+    "title": "Hosting & Maintenance",
+    "description": "We keep your site online, secure, and up to date — backups, updates, and uptime monitoring handled for you.",
+    "icon": "server"
+  },
+  {
+    "title": "Domain & Email Setup",
+    "description": "Your own .com and professional email addresses (you@yourbusiness.com) — configured and connected end to end.",
+    "icon": "globe"
+  },
+  {
+    "title": "Content & Copywriting",
+    "description": "Clear, persuasive words that tell your story and turn browsers into buyers — written for the web, in your brand's voice.",
+    "icon": "pen"
+  }
+]
