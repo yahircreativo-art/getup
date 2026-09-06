@@ -2,17 +2,17 @@ export const siteConfig = {
   /* ─────────────────────────────────────────────
      INFORMACIÓN BÁSICA DEL SITIO
   ───────────────────────────────────────────── */
-  title: 'GetUp',
+  title: 'GetUp Web Agency',
   url: 'https://ugetup.com', // URL pública sin barra final
   description:
-    'Take your business to the next level with GetUp. We build professional websites for fitness and wellness businesses.',
+    'We build websites in Bakersfield with strong website design that makes a great first impression. With SEO and PPC campaigns, we create local traffic, lead generation, and branding to bring you real leads.',
   keywords: [
     'web design',
     'website development',
-    'local seo',
-    'fitness website',
-    'wellness business',
-    'small business website',
+    'seo',
+    'ppc',
+    'lead generation',
+    'local leads',
   ],
   author: 'GetUp',
   locale: 'en_US', // formato BCP-47 para og:locale (en_US, es_MX...)
