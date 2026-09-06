@@ -20,11 +20,11 @@ const { title, description, image, canonical, type, schema, robots } = Astro.pro
 ---
 
 <!doctype html>
-<html lang="en-US">
+<html lang={siteConfig.language}>
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<link rel="icon" type="image/svg+xml" href="/getup-icon.svg" />
+		<link rel="icon" type="image/svg+xml" href={siteConfig.favicon} />
 		<meta name="generator" content={Astro.generator} />
 		<SEO {title} {description} {image} {canonical} {type} {schema} {robots} />
 		<link rel="preload" href="/fonts/montserrat-latin.woff2" as="font" type="font/woff2" crossorigin />
