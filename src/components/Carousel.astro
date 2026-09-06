@@ -1,0 +1,34 @@
+---
+interface Props {
+  images: string[];
+  speed?: number; // Tiempo en segundos por vuelta
+  direction?: 'left' | 'right'; // Prop opcional para controlar la dirección
+}
+
+const { images = [], speed = 20, direction = 'left' } = Astro.props as Props;
+
+const duplicatedImages = [...images, ...images];
+
+// Determinamos la clase de animación según la prop `direction`
+const animationClass = direction === 'left' 
+  ? 'animate-[infinite-scroll-left_var(--speed)_linear_infinite]' 
+  : 'animate-[infinite-scroll-right_var(--speed)_linear_infinite]';
+---
+
+<div class="relative w-full overflow-hidden rounded-xl">
+  <div 
+    class={`flex w-max ${animationClass}`}
+    style={`--speed: ${speed}s;`}
+  >
+    {duplicatedImages.map((src, i) => (
+      <div class="shrink-0 mr-3 overflow-hidden rounded-xl bg-neutral-800/50 shadow-md">
+        <img 
+          src={src} 
+          alt={`Slide ${(i % images.length) + 1}`} 
+          class="h-48 w-auto md:h-72 object-cover pointer-events-none" 
+          loading="lazy"
+        />
+      </div>
+    ))}
+  </div>
+</div>

@@ -1,9 +1,17 @@
 ---
-import adsImg from '../../assets/ads.webp'
-import callsImg from '../../assets/calls.webp'
-import mailImg from '../../assets/mail.webp'
-import messageImg from '../../assets/message.webp'
 import Button from '../Button.astro'
+import Carousel from '../Carousel.astro'
+
+import mockup from '../../assets/mockup-laptop.webp'
+
+// Public files (public/portfolio/) are served relative to the base path
+const base = import.meta.env.BASE_URL; // ends with '/'
+const hcproducts = `${base}portfolio/hcproducts.webp`;
+const thekabobguy = `${base}portfolio/thekabobguy.webp`;
+const portfolio3 = `${base}portfolio/portfolio3.webp`;
+
+const slides = [hcproducts,thekabobguy, portfolio3]
+const slides2 = [thekabobguy, portfolio3, hcproducts]
 ---
 
 <section id="hero" class="relative flex justify-center overflow-hidden" style="background: radial-gradient(circle at center 5%, var(--color-brand-600), var(--color-brand-700) 20%, var(--color-neutral-950) 65%)">
@@ -12,7 +20,7 @@ import Button from '../Button.astro'
   <slot />
 
   <!-- Content -->
-  <div class="relative z-10 w-full h-screen items-center flex justify-center text-center px-4 md:px-8">
+  <div class="relative z-10 w-full pt-42 pb-32 md:pt-64 flex justify-center text-center px-4 md:px-8">
     <div class="max-w-7xl mx-auto w-full">
     <div class="flex flex-col items-center gap-6 md:gap-8">
       <h1 class="hero-title text-4xl sm:text-6xl md:text-7xl font-black w-11/12 text-neutral-50 drop-shadow-2xl uppercase">
@@ -26,6 +34,15 @@ import Button from '../Button.astro'
           CONTACT US
         </Button>
       </div>
+
+      <div class="relative overflow-hidden max-w-7xl">
+			<div class="flex flex-col gap-3">
+				<Carousel images={slides} speed={100} direction="right"/>
+				<Carousel images={slides2} speed={100} direction="left"/>
+			</div>
+			<div class="absolute inset-0 bg-linear-to-t from-primary via-50% via-transparent to-transparent"/>
+		  </div>
+
     </div>
     </div>
   </div>
