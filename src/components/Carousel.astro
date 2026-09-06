@@ -66,3 +66,80 @@ const animationClass = direction === 'left'
     }
   }
 </style>
+
+<script>
+  /*
+   * "A veces la animación no arranca" — causas y arreglo:
+   *
+   * 1. bfcache: al volver con atrás/adelante, Safari/Chrome restauran la página
+   *    y la animación CSS puede quedar congelada. → hard restart en pageshow.
+   * 2. WebKit a veces congela la capa compuesta (will-change) sin actualizarla,
+   *    aunque getAnimations() diga "running". → watchdog que detecta transform
+   *    idéntico entre muestras y reinicia.
+   * 3. Al cambiar de pestaña/volver, la animación puede quedar en paused.
+   *    → getAnimations().play() al volver la visibilidad.
+   *
+   * El reinicio es visualmente invisible porque el track duplica el contenido:
+   * translateX(-50%) se ve igual que translateX(0).
+   */
+
+  const tracks = () => Array.from(document.querySelectorAll<HTMLElement>('.marquee-track'));
+
+  function hardRestart(el: HTMLElement) {
+    el.style.animation = 'none';
+    void el.offsetWidth; // fuerza reflow para que el navegador descarte la animación
+    el.style.animation = '';
+  }
+
+  function resumeAll() {
+    tracks().forEach((el) => {
+      if (typeof el.getAnimations !== 'function') return;
+      el.getAnimations().forEach((a) => {
+        if (a.playState === 'paused' || a.playState === 'idle') a.play();
+      });
+    });
+  }
+
+  // 1. Vuelta desde bfcache (atrás/adelante en iOS y Safari de escritorio)
+  window.addEventListener('pageshow', (e) => {
+    if ((e as PageTransitionEvent).persisted) {
+      tracks().forEach(hardRestart);
+    }
+  });
+
+  // 2. Volver a la pestaña / app
+  document.addEventListener('visibilitychange', () => {
+    if (!document.hidden) requestAnimationFrame(resumeAll);
+  });
+
+  // 3. Watchdog: detecta capas congeladas ("running" pero sin moverse)
+  const lastSample = new WeakMap<HTMLElement, string | null>();
+  const restarts = new WeakMap<HTMLElement, number>();
+
+  function watchdog() {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    tracks().forEach((el) => {
+      if (typeof el.getAnimations !== 'function') return;
+      const running = el.getAnimations().some((a) => a.playState === 'running');
+      if (!running) {
+        lastSample.set(el, null);
+        return;
+      }
+
+      const t = getComputedStyle(el).transform;
+      const prev = lastSample.get(el) ?? null;
+      lastSample.set(el, t);
+      if (!prev || prev !== t) return;
+
+      const count = restarts.get(el) ?? 0;
+      if (count >= 5) return; // evita reiniciar en bucle si algo lo congela de verdad
+      restarts.set(el, count + 1);
+      hardRestart(el);
+      lastSample.set(el, null);
+    });
+  }
+
+  // Muestras separadas ~2s: la animación siempre cambia de transform entre muestras
+  setInterval(watchdog, 2000);
+</script>
