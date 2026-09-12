@@ -17,9 +17,16 @@ const slides2 = [thekabobguy, portfolio3, hcproducts]
   <slot />
 
   <!-- Content -->
-  <div class="relative z-10 w-full pt-42 pb-32 md:pt-64 flex justify-center text-center px-4 md:px-8">
+  <div class="relative z-10 w-full pt-42 pb-32 md:pt-48 flex justify-center text-center px-4 md:px-8">
     <div class="max-w-9xl mx-auto w-full">
     <div class="flex flex-col items-center gap-6 md:gap-8">
+      <img
+        src={`${base}getupbranding.webp`}
+        alt="GetUp"
+        class="hero-brand-image w-full max-w-3xl h-40 sm:h-56 md:h-96 object-contain"
+        loading="eager"
+        decoding="async"
+      />
       <h1 class="hero-title text-4xl sm:text-6xl md:text-7xl font-black w-11/12 text-neutral-50 drop-shadow-2xl uppercase">
         WEB DESIGN IN BAKERSFIELD , CA
       </h1>
@@ -45,6 +52,12 @@ const slides2 = [thekabobguy, portfolio3, hcproducts]
 </section>
 
 <style>
+
+  .hero-brand-image {
+    opacity: 0;
+    transform: translateY(16px) scale(0.98);
+    animation: hero-image-fade-in 0.8s var(--ease-standard) forwards;
+  }
 
   .hero-title {
     opacity: 0;
