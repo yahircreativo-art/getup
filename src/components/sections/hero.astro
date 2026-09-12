@@ -18,7 +18,7 @@ const slides2 = [thekabobguy, portfolio3, hcproducts]
 
   <!-- Content -->
   <div class="relative z-10 w-full pt-42 pb-32 md:pt-64 flex justify-center text-center px-4 md:px-8">
-    <div class="max-w-7xl mx-auto w-full">
+    <div class="max-w-9xl mx-auto w-full">
     <div class="flex flex-col items-center gap-6 md:gap-8">
       <h1 class="hero-title text-4xl sm:text-6xl md:text-7xl font-black w-11/12 text-neutral-50 drop-shadow-2xl uppercase">
         WEB DESIGN IN BAKERSFIELD , CA
@@ -45,7 +45,7 @@ const slides2 = [thekabobguy, portfolio3, hcproducts]
 </section>
 
 <style>
-  /* Title entrance */
+
   .hero-title {
     opacity: 0;
     transform: translateY(20px);
@@ -68,6 +68,24 @@ const slides2 = [thekabobguy, portfolio3, hcproducts]
     to {
       opacity: 1;
       transform: translateY(0);
+    }
+  }
+
+  @keyframes hero-image-fade-in {
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-brand-image,
+    .hero-title,
+    .hero-subtitle,
+    .hero-cta {
+      animation: none;
+      opacity: 1;
+      transform: none;
     }
   }
 
