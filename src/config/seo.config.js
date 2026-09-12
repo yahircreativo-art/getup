@@ -65,7 +65,7 @@ export const siteConfig = {
     description:
       'Take your business to the next level with GetUp. We build professional websites for fitness and wellness businesses.',
     phone: '', // con código de país, ej: '+1 555 123 4567'
-    email: 'fernando.ygh@gmail.com',
+    email: 'info@ugetup.com',
     priceRange: '$$', // $, $$, $$$ — cuánto cobra
     currency: 'USD', // USD, MXN...
     foundingDate: '', // ej: '2024-01-15' o solo '2024'
