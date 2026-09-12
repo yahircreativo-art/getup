@@ -15,7 +15,7 @@ const animationClass = direction === 'left'
   : 'animate-[infinite-scroll-right_var(--speed)_linear_infinite]';
 ---
 
-<div class="marquee relative block w-full min-w-0 max-w-full overflow-hidden rounded-xl select-none">
+<div class="marquee relative block w-full min-w-0 max-w-9xl overflow-hidden rounded-xl select-none">
   <div 
     class={`marquee-track flex w-max ${animationClass}`}
     style={`--speed: ${speed}s;`}
