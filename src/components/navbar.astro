@@ -36,13 +36,43 @@ const { logo, logoAlt = "Logo" } = Astro.props;
 
   nav {
     will-change: transform;
-    transition: transform 0.3s ease-in-out;
+    transition: background-color 0.35s ease, box-shadow 0.35s ease;
     background: rgba(13, 13, 13, 0.5);
     backdrop-filter: blur(10px);
   }
 
-  nav.hidden-nav {
-    transform: translateY(-100%);
+  .nav-inner {
+    transition: padding 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .nav-logo {
+    height: 3.5rem;
+    width: auto;
+    transition: height 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  nav.compact-nav {
+    background: rgba(13, 13, 13, 0.88);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+  }
+
+  nav.compact-nav .nav-inner {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+
+  nav.compact-nav .nav-logo {
+    height: 2.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .nav-logo {
+      height: 6rem;
+    }
+
+    nav.compact-nav .nav-logo {
+      height: 3.5rem;
+    }
   }
 
   /* Hamburger icon */
@@ -101,12 +131,12 @@ const { logo, logoAlt = "Logo" } = Astro.props;
 
 <nav id="navbar" class="fixed top-0 z-50 w-full">
   
-    <div class="max-w-7xl mx-auto w-full flex md:grid md:grid-cols-3 items-center justify-between gap-4 px-4 md:px-8 py-4">
+    <div id="nav-inner" class="nav-inner max-w-7xl mx-auto w-full flex md:grid md:grid-cols-3 items-center justify-between gap-4 px-4 md:px-8 py-4">
       <!-- Logo -->
       <div class="flex-shrink-0">
         {logo ? (
           <a href="/">
-            <img src={logo} alt={logoAlt} class="sm:h-14 md:h-24 w-auto" />
+            <img src={logo} alt={logoAlt} class="nav-logo" />
           </a>
         ) : (
           <div class="text-xl font-black text-brand-500">LOGO</div>
@@ -154,8 +184,6 @@ const { logo, logoAlt = "Logo" } = Astro.props;
   const mobileMenu = document.getElementById('mobile-menu');
   const hamburgerIcon = document.getElementById('hamburger-icon');
   const navbar = document.getElementById('navbar');
-  let lastScrollY = 0;
-  let isScrollingDown = false;
   let isMenuOpen = false;
 
   function toggleMenu() {
@@ -182,27 +210,13 @@ const { logo, logoAlt = "Logo" } = Astro.props;
     link.addEventListener('click', closeMenu);
   });
 
-  // Hide navbar on scroll (throttled with requestAnimationFrame)
+  // Keep the navbar available while reducing its footprint after the first scroll.
   let ticking = false;
   window.addEventListener('scroll', () => {
     if (!ticking) {
       requestAnimationFrame(() => {
         const currentScrollY = window.scrollY;
-
-        if (currentScrollY > lastScrollY && currentScrollY > 100) {
-          if (!isScrollingDown) {
-            navbar?.classList.add('hidden-nav');
-            isScrollingDown = true;
-            closeMenu();
-          }
-        } else {
-          if (isScrollingDown) {
-            navbar?.classList.remove('hidden-nav');
-            isScrollingDown = false;
-          }
-        }
-
-        lastScrollY = currentScrollY;
+        navbar?.classList.toggle('compact-nav', currentScrollY > 80);
         ticking = false;
       });
       ticking = true;

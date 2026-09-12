@@ -1,0 +1,115 @@
+---
+interface Review {
+  quote: string;
+  name: string;
+  business: string;
+  rating?: number;
+}
+
+interface Props {
+  reviews?: Review[];
+}
+
+// Edit these reviews or pass a custom reviews array when using the component.
+const defaultReviews: Review[] = [
+  {
+    quote: "The website finally feels like our business: clear, welcoming, and easy for customers to use.",
+    name: "The Kabob Guy",
+    business: "Restaurant website",
+    rating: 5,
+  },
+  {
+    quote: "A thoughtful digital experience that makes it easier for local customers to find us and take the next step.",
+    name: "HC Products",
+    business: "E-commerce website",
+    rating: 5,
+  },
+];
+
+const { reviews = defaultReviews } = Astro.props;
+---
+
+<section class="reviews-section px-4 py-24 md:px-8 md:py-32" aria-labelledby="reviews-title">
+  <div class="mx-auto w-full max-w-7xl">
+    <div class="reviews-heading animate-on-scroll fade-up">
+      <span class="text-sm font-semibold uppercase tracking-wider text-brand-400">Client words</span>
+      <h2 id="reviews-title" class="mt-4 text-4xl font-black text-neutral-50 sm:text-5xl md:text-6xl">
+        BUILT TO BE REMEMBERED
+      </h2>
+      <p class="mt-5 max-w-2xl text-lg leading-relaxed text-neutral-300">
+        Good work should feel good to use. Here is what it looks like from the other side of the screen.
+      </p>
+    </div>
+
+    <div class="mt-12 grid grid-cols-1 gap-5 md:grid-cols-2">
+      {reviews.map((review, index) => (
+        <article
+          class="review-card animate-on-scroll fade-up"
+          style={`--review-delay: ${index * 120}ms`}
+        >
+          <div class="flex items-center justify-between gap-4">
+            <div class="flex gap-1 text-brand-400" aria-label={`${review.rating ?? 5} out of 5 stars`}>
+              {Array.from({ length: review.rating ?? 5 }).map(() => (
+                <span aria-hidden="true">★</span>
+              ))}
+            </div>
+            <span class="quote-mark" aria-hidden="true">“</span>
+          </div>
+          <blockquote class="mt-6 text-xl font-medium leading-relaxed text-neutral-100">
+            {review.quote}
+          </blockquote>
+          <footer class="mt-8 border-t border-white/10 pt-5">
+            <p class="font-bold text-neutral-50">{review.name}</p>
+            <p class="mt-1 text-sm text-neutral-400">{review.business}</p>
+          </footer>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .reviews-section {
+    background: var(--color-neutral-950);
+  }
+
+  .reviews-heading {
+    max-width: 48rem;
+  }
+
+  .review-card {
+    min-height: 19rem;
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 1rem;
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.025));
+    transition:
+      opacity 0.7s var(--ease-standard),
+      transform 0.7s var(--ease-standard),
+      border-color 0.3s ease,
+      background 0.3s ease;
+    transition-delay: var(--review-delay, 0ms);
+  }
+
+  .review-card:hover {
+    border-color: rgba(255, 255, 255, 0.18);
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.035));
+    transform: translateY(-4px);
+  }
+
+  .quote-mark {
+    color: var(--color-brand-400);
+    font-size: 4rem;
+    font-weight: 900;
+    line-height: 0.5;
+    opacity: 0.8;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .review-card {
+      transition-delay: 0ms;
+    }
+  }
+</style>

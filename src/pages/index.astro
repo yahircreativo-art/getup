@@ -3,6 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import Hero from '../components/sections/hero.astro'
 import ValueProposition from '../components/ValueProposition.astro'
 import FeatureSection from '../components/FeatureSection.astro'
+import Reviews from '../components/Reviews.astro'
 import ContactForm from '../components/ContactForm.astro'
 import Logo from '../assets/getup.svg'
 import Mockup from '../assets/mockup-laptop.webp'
@@ -36,6 +37,8 @@ import SEOPPC from '../assets/SEO-PPC.webp'
 	>
 		<img slot="image" src={SEOPPC.src} alt="Calendly screenshot" />
 	</FeatureSection>
+
+	<Reviews />
 
 	<section id="contact" class="py-20 px-4 md:px-8">
 		<div class="max-w-2xl mx-auto">

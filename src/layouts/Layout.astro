@@ -23,7 +23,7 @@ const { title, description, image, canonical, type, schema, robots } = Astro.pro
 ---
 
 <!doctype html>
-<html lang={siteConfig.language}>
+<html lang={siteConfig.language} class="bg-neutral-950">
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -35,7 +35,7 @@ const { title, description, image, canonical, type, schema, robots } = Astro.pro
 		<Analytics/>
 		<SpeedInsights/>
 	</head>
-	<body class="slide-down bg-neutral-950">
+	<body class="slide-down min-h-screen bg-neutral-950">
 		<Navbar logo={logo.src} logoAlt="getup logo" />
 		<slot />
 		<Footer logo={logo.src} logoAlt="getup logo" />

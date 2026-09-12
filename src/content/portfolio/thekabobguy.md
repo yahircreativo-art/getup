@@ -30,8 +30,7 @@ company:
 pubDate: 2026-09-01
 author: "GetUp"
 tags:
-  - "E-commerce"
-  - "Web Design"
+  - "Landing-page"
 ---
 
 Every restaurant has a story behind the plate. For The Kabob Guy, it starts with seasoned meats, fresh sides, and the heat of the grill. We built a website that puts that story first and gives hungry guests a clear way in.

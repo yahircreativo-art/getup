@@ -30,7 +30,7 @@ company:
 pubDate: 2026-09-01
 author: "GetUp"
 tags:
-  - "E-commerce"
+  - "Landing-page"
   - "Web Design"
 ---
 
