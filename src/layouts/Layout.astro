@@ -1,4 +1,5 @@
 ---
+import Analytics from '@vercel/analytics/astro'
 import '../styles/design-system.css'
 import Navbar from '../components/navbar.astro'
 import Footer from '../components/footer.astro'
@@ -28,6 +29,7 @@ const { title, description, image, canonical, type, schema, robots } = Astro.pro
 		<meta name="generator" content={Astro.generator} />
 		<SEO {title} {description} {image} {canonical} {type} {schema} {robots} />
 		<link rel="preload" href="/fonts/montserrat-latin.woff2" as="font" type="font/woff2" crossorigin />
+		<Analytics/>
 	</head>
 	<body class="slide-down bg-neutral-950">
 		<Navbar logo={logo.src} logoAlt="getup logo" />
