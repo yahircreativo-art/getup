@@ -16,25 +16,24 @@ const assetSrc = (path: string) => `${base}${path.replace(/^\//, '')}`;
 ---
 
 <article>
-  <!-- Banner top -->
-  <div class="relative w-full h-[38vh] pt-16 min-h-[280px] max-h-[480px] overflow-hidden">
-    <img
-      src={assetSrc(banner)}
-      alt={title}
-      class="w-full h-full object-cover"
-      loading="eager"
-      decoding="async"
-    />
-    <div class="absolute inset-0 pointer-events-none bg-linear-to-t from-neutral-950 via-neutral-950/30 to-black/40" aria-hidden="true"></div>
-  </div>
-
-  <div class="max-w-9xl mx-auto w-full pt-16 px-4 md:px-8">
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12 -mt-24 relative z-10 pb-24">
+  <div class="max-w-9xl mx-auto w-full pt-32 px-4 md:px-8">
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12 pb-24">
 
       <!-- Main column -->
       <div class="lg:col-span-2 flex flex-col gap-8 min-w-0">
         <!-- Header card -->
         <header class="case-card p-6 md:p-10">
+          <div class="relative mb-8 h-[30vh] min-h-[280px] max-h-[560px] overflow-hidden rounded-xl bg-neutral-800">
+            <img
+              src={assetSrc(banner)}
+              alt={title}
+              class="w-full h-full object-cover"
+              loading="eager"
+              decoding="async"
+            />
+            <div class="absolute inset-0 pointer-events-none bg-linear-to-t from-neutral-950/50 via-transparent to-black/10" aria-hidden="true"></div>
+          </div>
+
           <div class="flex flex-wrap items-center gap-3 mb-6">
             <time class="text-xs font-semibold uppercase tracking-wider text-brand-400" datetime={pubDate.toISOString()}>
               {formatDate(pubDate)}
