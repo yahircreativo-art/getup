@@ -2,7 +2,7 @@
 import type { CollectionEntry } from 'astro:content';
 
 interface Props {
-  post: CollectionEntry<'blog'>;
+  post: CollectionEntry<'portfolio'>;
 }
 
 const { post } = Astro.props;
@@ -34,7 +34,7 @@ const assetSrc = (path: string) => `${base}${path.replace(/^\//, '')}`;
       <!-- Main column -->
       <div class="lg:col-span-2 flex flex-col gap-8 min-w-0">
         <!-- Header card -->
-        <header class="post-card p-6 md:p-10">
+        <header class="case-card p-6 md:p-10">
           <div class="flex flex-wrap items-center gap-3 mb-6">
             <time class="text-xs font-semibold uppercase tracking-wider text-brand-400" datetime={pubDate.toISOString()}>
               {formatDate(pubDate)}
@@ -60,16 +60,13 @@ const assetSrc = (path: string) => `${base}${path.replace(/^\//, '')}`;
 
         <!-- Gallery -->
         {gallery.length > 0 && (
-          <section class="post-card p-6 md:p-8" aria-label="Article gallery">
+          <section class="case-card p-6 md:p-8" aria-label="Project gallery">
             <div class:list={[
               'grid gap-4',
               gallery.length === 1 ? 'grid-cols-1' : 'grid-cols-1 sm:grid-cols-2',
             ]}>
               {gallery.map((image) => (
-                <div class:list={[
-                  'gallery-item overflow-hidden rounded-xl bg-neutral-800',
-                  gallery.length === 3 ? 'sm:col-span-1' : '',
-                ]}>
+                <div class="overflow-hidden rounded-xl bg-neutral-800">
                   <img
                     src={assetSrc(image.src)}
                     alt={image.alt}
@@ -84,17 +81,17 @@ const assetSrc = (path: string) => `${base}${path.replace(/^\//, '')}`;
         )}
 
         <!-- MD content -->
-        <div class="post-card p-6 md:p-10 prose-content">
+        <div class="case-card p-6 md:p-10 case-study-content">
           <slot />
         </div>
       </div>
 
-      <!-- Aside: company description in list format -->
+      <!-- Aside: company/project description in list format -->
       {company && company.length > 0 && (
         <aside class="lg:col-span-1">
           <div class="lg:sticky lg:top-28 flex flex-col gap-6">
             {company.map((block) => (
-              <div class="post-card p-6">
+              <div class="case-card p-6">
                 <h3 class="text-lg font-bold text-neutral-50 mb-4">{block.label}</h3>
                 {block.value && (
                   <p class="text-brand-400 font-semibold text-sm uppercase tracking-wider mb-4">
@@ -119,7 +116,7 @@ const assetSrc = (path: string) => `${base}${path.replace(/^\//, '')}`;
               href="/contact"
               class="inline-flex items-center justify-center gap-2 font-semibold rounded-full transition-all px-7 py-3 text-base bg-brand-600 text-white shadow-[0_4px_14px_rgb(99_60_200/0.35)] hover:shadow-[0_6px_20px_rgb(99_60_200/0.45)] hover:-translate-y-0.5"
             >
-              Work With Us
+              Start Your Project
             </a>
           </div>
         </aside>
@@ -129,20 +126,20 @@ const assetSrc = (path: string) => `${base}${path.replace(/^\//, '')}`;
 </article>
 
 <style>
-  .post-card {
+  .case-card {
     background: rgba(255, 255, 255, 0.03);
     border: 1px solid rgba(255, 255, 255, 0.06);
     border-radius: 1rem;
   }
 
   /* MD content typography — matches the site's dark design */
-  .prose-content {
+  .case-study-content {
     color: var(--color-neutral-300);
     font-size: 1.0625rem;
     line-height: 1.75;
   }
 
-  .prose-content :global(h2) {
+  .case-study-content :global(h2) {
     font-size: 1.75rem;
     font-weight: 800;
     color: var(--color-neutral-50);
@@ -150,7 +147,7 @@ const assetSrc = (path: string) => `${base}${path.replace(/^\//, '')}`;
     margin-bottom: 1rem;
   }
 
-  .prose-content :global(h3) {
+  .case-study-content :global(h3) {
     font-size: 1.375rem;
     font-weight: 700;
     color: var(--color-neutral-50);
@@ -158,39 +155,39 @@ const assetSrc = (path: string) => `${base}${path.replace(/^\//, '')}`;
     margin-bottom: 0.75rem;
   }
 
-  .prose-content :global(p) {
+  .case-study-content :global(p) {
     margin-bottom: 1.25rem;
   }
 
-  .prose-content :global(strong) {
+  .case-study-content :global(strong) {
     color: var(--color-neutral-50);
     font-weight: 700;
   }
 
-  .prose-content :global(a) {
+  .case-study-content :global(a) {
     color: var(--color-brand-400);
     font-weight: 600;
     text-decoration: underline;
     text-underline-offset: 3px;
   }
 
-  .prose-content :global(ul),
-  .prose-content :global(ol) {
+  .case-study-content :global(ul),
+  .case-study-content :global(ol) {
     margin: 1.25rem 0 1.25rem 1.5rem;
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
   }
 
-  .prose-content :global(ul) {
+  .case-study-content :global(ul) {
     list-style: disc;
   }
 
-  .prose-content :global(ol) {
+  .case-study-content :global(ol) {
     list-style: decimal;
   }
 
-  .prose-content :global(blockquote) {
+  .case-study-content :global(blockquote) {
     border-left: 3px solid var(--color-brand-500);
     background: rgba(99, 60, 200, 0.08);
     padding: 1rem 1.5rem;
@@ -200,12 +197,12 @@ const assetSrc = (path: string) => `${base}${path.replace(/^\//, '')}`;
     margin: 1.5rem 0;
   }
 
-  .prose-content :global(img) {
+  .case-study-content :global(img) {
     border-radius: 0.75rem;
     margin: 1.5rem 0;
   }
 
-  .prose-content :global(code) {
+  .case-study-content :global(code) {
     background: rgba(255, 255, 255, 0.08);
     padding: 0.15rem 0.4rem;
     border-radius: 0.375rem;
@@ -213,7 +210,7 @@ const assetSrc = (path: string) => `${base}${path.replace(/^\//, '')}`;
     font-family: var(--font-mono);
   }
 
-  .prose-content :global(pre) {
+  .case-study-content :global(pre) {
     background: rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 0.75rem;
@@ -222,12 +219,12 @@ const assetSrc = (path: string) => `${base}${path.replace(/^\//, '')}`;
     margin: 1.5rem 0;
   }
 
-  .prose-content :global(pre code) {
+  .case-study-content :global(pre code) {
     background: none;
     padding: 0;
   }
 
-  .prose-content :global(hr) {
+  .case-study-content :global(hr) {
     border-color: rgba(255, 255, 255, 0.1);
     margin: 2rem 0;
   }

@@ -1,0 +1,40 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import PortfolioCard from '../../components/PortfolioCard.astro';
+import { getCollection } from 'astro:content';
+
+const projects = (await getCollection('portfolio', ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+---
+
+<Layout
+  title="Getup - Portfolio"
+  description="Case studies of the websites we've built for local businesses — design, results, and how we helped them grow."
+  image="/banner.webp"
+>
+  <section class="py-24 px-4 md:px-8 bg-neutral-950 min-h-screen">
+    <div class="max-w-7xl mx-auto w-full">
+      <!-- Section Header -->
+      <div class="text-center mb-16">
+        <span class="text-brand-400 font-semibold text-sm uppercase tracking-wider">Our Work</span>
+        <h1 class="text-4xl sm:text-5xl md:text-6xl font-black text-neutral-50 mt-4">
+          PORTFOLIO
+        </h1>
+        <p class="text-neutral-300 text-lg mt-4 max-w-2xl mx-auto">
+          Case studies of the websites we've built — how we designed them and the results they brought.
+        </p>
+      </div>
+
+      {projects.length === 0 ? (
+        <p class="text-center text-neutral-400 text-lg">No case studies yet. Check back soon!</p>
+      ) : (
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {projects.map((post) => (
+            <PortfolioCard post={post} />
+          ))}
+        </div>
+      )}
+    </div>
+  </section>
+</Layout>

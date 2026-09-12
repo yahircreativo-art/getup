@@ -2,7 +2,7 @@
 import type { CollectionEntry } from 'astro:content';
 
 interface Props {
-  post: CollectionEntry<'blog'>;
+  post: CollectionEntry<'portfolio'>;
 }
 
 const { post } = Astro.props;
@@ -15,9 +15,9 @@ const base = import.meta.env.BASE_URL; // ends with '/'
 const bannerSrc = `${base}${banner.replace(/^\//, '')}`;
 ---
 
-<a href={`/blog/${post.id}/`} class="blog-card group">
+<a href={`/portfolio/${post.id}/`} class="portfolio-card group">
   <!-- Banner -->
-  <div class="blog-image">
+  <div class="portfolio-image">
     <img
       src={bannerSrc}
       alt={title}
@@ -34,12 +34,12 @@ const bannerSrc = `${base}${banner.replace(/^\//, '')}`;
   </div>
 
   <!-- Info -->
-  <div class="blog-info">
-    <time class="blog-date" datetime={pubDate.toISOString()}>{formatDate(pubDate)}</time>
-    <h3 class="blog-title">{title}</h3>
-    <p class="blog-description">{description}</p>
-    <span class="blog-readmore">
-      Read article
+  <div class="portfolio-info">
+    <time class="portfolio-date" datetime={pubDate.toISOString()}>{formatDate(pubDate)}</time>
+    <h3 class="portfolio-title">{title}</h3>
+    <p class="portfolio-description">{description}</p>
+    <span class="portfolio-readmore">
+      View case study
       <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
         <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
       </svg>
@@ -48,7 +48,7 @@ const bannerSrc = `${base}${banner.replace(/^\//, '')}`;
 </a>
 
 <style>
-  .blog-card {
+  .portfolio-card {
     display: flex;
     flex-direction: column;
     border-radius: 1rem;
@@ -59,13 +59,13 @@ const bannerSrc = `${base}${banner.replace(/^\//, '')}`;
     text-decoration: none;
   }
 
-  .blog-card:hover {
+  .portfolio-card:hover {
     transform: translateY(-6px);
     border-color: rgba(99, 60, 200, 0.4);
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
   }
 
-  .blog-image {
+  .portfolio-image {
     position: relative;
     width: 100%;
     aspect-ratio: 16 / 9;
@@ -73,22 +73,22 @@ const bannerSrc = `${base}${banner.replace(/^\//, '')}`;
     background: var(--color-neutral-800);
   }
 
-  .blog-image img {
+  .portfolio-image img {
     transition: transform 0.4s var(--ease-standard);
   }
 
-  .blog-card:hover .blog-image img {
+  .portfolio-card:hover .portfolio-image img {
     transform: scale(1.05);
   }
 
-  .blog-info {
+  .portfolio-info {
     padding: 1.25rem;
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
   }
 
-  .blog-date {
+  .portfolio-date {
     font-size: 0.75rem;
     font-weight: 600;
     text-transform: uppercase;
@@ -96,14 +96,14 @@ const bannerSrc = `${base}${banner.replace(/^\//, '')}`;
     color: var(--color-brand-400);
   }
 
-  .blog-title {
+  .portfolio-title {
     font-size: 1.125rem;
     font-weight: 700;
     line-height: 1.35;
     color: var(--color-neutral-50);
   }
 
-  .blog-description {
+  .portfolio-description {
     font-size: 0.875rem;
     line-height: 1.5;
     color: var(--color-neutral-400);
@@ -113,7 +113,7 @@ const bannerSrc = `${base}${banner.replace(/^\//, '')}`;
     overflow: hidden;
   }
 
-  .blog-readmore {
+  .portfolio-readmore {
     margin-top: 0.5rem;
     display: inline-flex;
     align-items: center;
