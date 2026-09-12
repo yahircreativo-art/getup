@@ -70,6 +70,22 @@ const { logo, logoAlt = "Logo" } = Astro.props;
     height: 2.5rem;
   }
 
+  :global(.nav-contact-button.btn-lg) {
+    transition:
+      padding 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+      font-size 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+      background-color 0.25s var(--ease-standard),
+      color 0.25s var(--ease-standard),
+      border-color 0.25s var(--ease-standard),
+      transform 0.2s var(--ease-standard),
+      box-shadow 0.25s var(--ease-standard);
+  }
+
+  nav.compact-nav :global(.nav-contact-button.btn-lg) {
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+  }
+
   @media (min-width: 1024px) {
     .nav-logo {
       height: 6rem;
@@ -175,7 +191,7 @@ const { logo, logoAlt = "Logo" } = Astro.props;
 
       <!-- Desktop Contact CTA -->
       <div class="hidden md:flex justify-end">
-        <Button href="/contact" variant="primary" size="sm">
+        <Button href="/contact" variant="secondary" size="lg" class="nav-contact-button">
           CONTACT US
         </Button>
       </div>

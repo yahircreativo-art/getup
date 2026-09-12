@@ -71,25 +71,12 @@ const Tag = href ? 'a' : 'button';
 
   /* Secondary */
   .btn-secondary {
-    background-color: var(--color-neutral-800);
     color: var(--color-neutral-50);
+    border: 2px solid var(--color-brand-400);
   }
 
   .btn-secondary:hover {
-    background-color: var(--color-neutral-700);
-    transform: translateY(-1px);
-  }
-
-  /* Outline */
-  .btn-outline {
-    background-color: transparent;
-    color: var(--color-neutral-50);
-    border: 2px solid rgba(255, 255, 255, 0.25);
-  }
-
-  .btn-outline:hover {
-    border-color: rgba(255, 255, 255, 0.5);
-    background-color: rgba(255, 255, 255, 0.05);
+    background-color: color-mix(in oklch, var(--color-neutral-900) 40%, transparent);
     transform: translateY(-1px);
   }
 
