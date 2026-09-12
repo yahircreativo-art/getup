@@ -4,6 +4,8 @@ interface Props {
   logoAlt?: string;
 }
 
+import Button from './Button.astro';
+
 const { logo, logoAlt = "Logo" } = Astro.props;
 ---
 
@@ -36,9 +38,9 @@ const { logo, logoAlt = "Logo" } = Astro.props;
 
   nav {
     will-change: transform;
-    transition: background-color 0.35s ease, box-shadow 0.35s ease;
-    background: rgba(13, 13, 13, 0.5);
-    backdrop-filter: blur(10px);
+    transition: background-color 0.35s ease, box-shadow 0.35s ease, backdrop-filter 0.35s ease;
+    background: transparent;
+    backdrop-filter: blur(0);
   }
 
   .nav-inner {
@@ -53,6 +55,7 @@ const { logo, logoAlt = "Logo" } = Astro.props;
 
   nav.compact-nav {
     background: rgba(13, 13, 13, 0.88);
+    backdrop-filter: blur(10px);
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
   }
 
@@ -148,11 +151,14 @@ const { logo, logoAlt = "Logo" } = Astro.props;
         <a href="/portfolio" class="nav-link text-neutral-50 font-semibold">PORTFOLIO</a>
         <a href="/services" class="nav-link text-neutral-50 font-semibold">SERVICES</a>
         <a href="/about" class="nav-link text-neutral-50 font-semibold">ABOUT</a>
-        <a href="/contact" class="nav-link text-neutral-50 font-semibold">CONTACT</a>
       </div>
 
-      <!-- Empty Column -->
-      <div class="hidden md:block"></div>
+      <!-- Desktop Contact CTA -->
+      <div class="hidden md:flex justify-end">
+        <Button href="/contact" variant="primary" size="sm">
+          CONTACT
+        </Button>
+      </div>
 
       <!-- Mobile Menu Toggle -->
       <button class="md:hidden flex-shrink-0" id="menu-toggle" aria-label="Toggle menu" aria-expanded="false">
