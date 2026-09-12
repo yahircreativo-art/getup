@@ -17,7 +17,7 @@ const assetSrc = (path: string) => `${base}${path.replace(/^\//, '')}`;
 
 <article>
   <!-- Banner top -->
-  <div class="relative w-full h-[38vh] min-h-[240px] max-h-[420px] overflow-hidden">
+  <div class="relative w-full h-[38vh] pt-8 min-h-[240px] max-h-[420px] overflow-hidden">
     <img
       src={assetSrc(banner)}
       alt={title}
@@ -28,7 +28,7 @@ const assetSrc = (path: string) => `${base}${path.replace(/^\//, '')}`;
     <div class="absolute inset-0 pointer-events-none bg-linear-to-t from-neutral-950 via-neutral-950/30 to-black/40" aria-hidden="true"></div>
   </div>
 
-  <div class="max-w-7xl mx-auto w-full px-4 md:px-8">
+  <div class="max-w-7xl mx-auto w-full pt-16 px-4 md:px-8">
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12 -mt-24 relative z-10 pb-24">
 
       <!-- Main column -->
@@ -47,7 +47,7 @@ const assetSrc = (path: string) => `${base}${path.replace(/^\//, '')}`;
               </span>
             ))}
           </div>
-          <h1 class="text-3xl sm:text-4xl md:text-5xl font-black text-neutral-50 leading-tight">
+          <h1 class="text-3xl sm:text-4xl md:text-5xl font-black text-neutral-50 leading-tight uppercase">
             {title}
           </h1>
           {subtitle && (
