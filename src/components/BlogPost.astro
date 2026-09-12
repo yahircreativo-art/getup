@@ -1,0 +1,234 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  post: CollectionEntry<'blog'>;
+}
+
+const { post } = Astro.props;
+const { title, subtitle, description, banner, gallery, company, pubDate, author, tags } = post.data;
+
+const formatDate = (date: Date) =>
+  date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+
+const base = import.meta.env.BASE_URL; // ends with '/'
+const assetSrc = (path: string) => `${base}${path.replace(/^\//, '')}`;
+---
+
+<article>
+  <!-- Banner top -->
+  <div class="relative w-full h-[38vh] min-h-[240px] max-h-[420px] overflow-hidden">
+    <img
+      src={assetSrc(banner)}
+      alt={title}
+      class="w-full h-full object-cover"
+      loading="eager"
+      decoding="async"
+    />
+    <div class="absolute inset-0 pointer-events-none bg-linear-to-t from-neutral-950 via-neutral-950/30 to-black/40" aria-hidden="true"></div>
+  </div>
+
+  <div class="max-w-7xl mx-auto w-full px-4 md:px-8">
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12 -mt-24 relative z-10 pb-24">
+
+      <!-- Main column -->
+      <div class="lg:col-span-2 flex flex-col gap-8 min-w-0">
+        <!-- Header card -->
+        <header class="post-card p-6 md:p-10">
+          <div class="flex flex-wrap items-center gap-3 mb-6">
+            <time class="text-xs font-semibold uppercase tracking-wider text-brand-400" datetime={pubDate.toISOString()}>
+              {formatDate(pubDate)}
+            </time>
+            <span class="text-neutral-600">•</span>
+            <span class="text-xs font-semibold uppercase tracking-wider text-neutral-400">By {author}</span>
+            {tags.map((tag) => (
+              <span class="px-3 py-1 text-xs font-semibold uppercase tracking-wider text-neutral-50 bg-brand-600/90 rounded-full">
+                {tag}
+              </span>
+            ))}
+          </div>
+          <h1 class="text-3xl sm:text-4xl md:text-5xl font-black text-neutral-50 leading-tight">
+            {title}
+          </h1>
+          {subtitle && (
+            <h2 class="text-xl md:text-2xl text-brand-400 mt-4 font-medium">{subtitle}</h2>
+          )}
+          <p class="text-neutral-300 text-lg leading-relaxed mt-6 border-l-2 border-brand-600 pl-4">
+            {description}
+          </p>
+        </header>
+
+        <!-- Gallery -->
+        {gallery.length > 0 && (
+          <section class="post-card p-6 md:p-8" aria-label="Article gallery">
+            <div class:list={[
+              'grid gap-4',
+              gallery.length === 1 ? 'grid-cols-1' : 'grid-cols-1 sm:grid-cols-2',
+            ]}>
+              {gallery.map((image) => (
+                <div class:list={[
+                  'gallery-item overflow-hidden rounded-xl bg-neutral-800',
+                  gallery.length === 3 ? 'sm:col-span-1' : '',
+                ]}>
+                  <img
+                    src={assetSrc(image.src)}
+                    alt={image.alt}
+                    class="w-full h-full object-cover aspect-video hover:scale-105 transition-transform duration-500"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
+
+        <!-- MD content -->
+        <div class="post-card p-6 md:p-10 prose-content">
+          <slot />
+        </div>
+      </div>
+
+      <!-- Aside: company description in list format -->
+      {company && company.length > 0 && (
+        <aside class="lg:col-span-1">
+          <div class="lg:sticky lg:top-28 flex flex-col gap-6">
+            {company.map((block) => (
+              <div class="post-card p-6">
+                <h3 class="text-lg font-bold text-neutral-50 mb-4">{block.label}</h3>
+                {block.value && (
+                  <p class="text-brand-400 font-semibold text-sm uppercase tracking-wider mb-4">
+                    {block.value}
+                  </p>
+                )}
+                <ul class="space-y-3">
+                  {block.items?.map((item) => (
+                    <li class="flex items-start gap-3 text-sm text-neutral-300 leading-relaxed">
+                      <svg class="w-4 h-4 mt-0.5 flex-shrink-0 text-brand-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                      </svg>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+
+            <!-- CTA -->
+            <a
+              href="/contact"
+              class="inline-flex items-center justify-center gap-2 font-semibold rounded-full transition-all px-7 py-3 text-base bg-brand-600 text-white shadow-[0_4px_14px_rgb(99_60_200/0.35)] hover:shadow-[0_6px_20px_rgb(99_60_200/0.45)] hover:-translate-y-0.5"
+            >
+              Work With Us
+            </a>
+          </div>
+        </aside>
+      )}
+    </div>
+  </div>
+</article>
+
+<style>
+  .post-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 1rem;
+  }
+
+  /* MD content typography — matches the site's dark design */
+  .prose-content {
+    color: var(--color-neutral-300);
+    font-size: 1.0625rem;
+    line-height: 1.75;
+  }
+
+  .prose-content :global(h2) {
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: var(--color-neutral-50);
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .prose-content :global(h3) {
+    font-size: 1.375rem;
+    font-weight: 700;
+    color: var(--color-neutral-50);
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .prose-content :global(p) {
+    margin-bottom: 1.25rem;
+  }
+
+  .prose-content :global(strong) {
+    color: var(--color-neutral-50);
+    font-weight: 700;
+  }
+
+  .prose-content :global(a) {
+    color: var(--color-brand-400);
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .prose-content :global(ul),
+  .prose-content :global(ol) {
+    margin: 1.25rem 0 1.25rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .prose-content :global(ul) {
+    list-style: disc;
+  }
+
+  .prose-content :global(ol) {
+    list-style: decimal;
+  }
+
+  .prose-content :global(blockquote) {
+    border-left: 3px solid var(--color-brand-500);
+    background: rgba(99, 60, 200, 0.08);
+    padding: 1rem 1.5rem;
+    border-radius: 0 0.75rem 0.75rem 0;
+    font-style: italic;
+    color: var(--color-neutral-200);
+    margin: 1.5rem 0;
+  }
+
+  .prose-content :global(img) {
+    border-radius: 0.75rem;
+    margin: 1.5rem 0;
+  }
+
+  .prose-content :global(code) {
+    background: rgba(255, 255, 255, 0.08);
+    padding: 0.15rem 0.4rem;
+    border-radius: 0.375rem;
+    font-size: 0.9em;
+    font-family: var(--font-mono);
+  }
+
+  .prose-content :global(pre) {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 0.75rem;
+    padding: 1rem 1.25rem;
+    overflow-x: auto;
+    margin: 1.5rem 0;
+  }
+
+  .prose-content :global(pre code) {
+    background: none;
+    padding: 0;
+  }
+
+  .prose-content :global(hr) {
+    border-color: rgba(255, 255, 255, 0.1);
+    margin: 2rem 0;
+  }
+</style>
