@@ -44,6 +44,8 @@ const { logo, logoAlt = "Logo" } = Astro.props;
   }
 
   .nav-inner {
+    position: relative;
+    z-index: 2;
     transition: padding 0.35s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
@@ -117,18 +119,36 @@ const { logo, logoAlt = "Logo" } = Astro.props;
 
   /* Mobile menu */
   #mobile-menu {
-    overflow: hidden;
-    max-height: 0;
+    position: fixed;
+    inset: 0;
+    z-index: 1;
+    min-height: 100dvh;
+    overflow-y: auto;
+    padding: 6.5rem 1rem 2rem;
+    background: rgba(13, 13, 13, 0.97);
+    transform: translateX(100%);
     opacity: 0;
-    will-change: max-height, opacity;
+    pointer-events: none;
+    visibility: hidden;
+    will-change: transform, opacity;
     transition:
-      max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1),
-      opacity 0.25s ease;
+      transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+      opacity 0.25s ease,
+      visibility 0s linear 0.35s;
   }
 
   #mobile-menu.is-open {
-    max-height: 300px;
+    transform: translateX(0);
     opacity: 1;
+    pointer-events: auto;
+    visibility: visible;
+    transition-delay: 0s;
+  }
+
+  @media (min-width: 768px) {
+    #mobile-menu {
+      display: none;
+    }
   }
 </style>
 
@@ -173,7 +193,7 @@ const { logo, logoAlt = "Logo" } = Astro.props;
 
   <!-- Mobile Menu -->
   <div id="mobile-menu">
-    <div class="px-4 md:px-8 py-4">
+    <div class="px-4 py-4">
       <div class="max-w-9xl mx-auto w-full space-y-3 flex flex-col">
         <a href="/" class="mobile-link text-neutral-50 font-medium text-lg">Home</a>
         <a href="/portfolio" class="mobile-link text-neutral-50 font-medium text-lg">Portfolio</a>
