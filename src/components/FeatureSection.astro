@@ -65,7 +65,7 @@ const isLeft = imagePosition === 'left';
         'feature-image flex justify-center',
         isLeft ? 'md:order-1 from-left' : 'md:order-2',
       ]}>
-        <div class="relative w-full aspect-square bg-neutral-800 rounded-2xl flex items-center justify-center overflow-hidden">
+        <div class="relative w-full aspect-square  rounded-2xl flex items-center justify-center overflow-hidden">
           <slot name="image" />
           <div class="absolute bottom-0 left-0 right-0 h-1/5 pointer-events-none bg-linear-to-t from-black to-transparent" aria-hidden="true"></div>
         </div>
