@@ -161,7 +161,7 @@ const { logo, logoAlt = "Logo" } = Astro.props;
     transition-delay: 0s;
   }
 
-  @media (min-width: 768px) {
+  @media (min-width: 1024px) {
     #mobile-menu {
       display: none;
     }
@@ -170,7 +170,7 @@ const { logo, logoAlt = "Logo" } = Astro.props;
 
 <nav id="navbar" class="fixed top-0 z-50 w-full">
   
-    <div id="nav-inner" class="nav-inner max-w-9xl mx-auto w-full flex md:grid md:grid-cols-3 items-center justify-between gap-4 px-4 md:px-8 py-4">
+    <div id="nav-inner" class="nav-inner max-w-9xl mx-auto w-full flex min-[901px]:grid min-[901px]:grid-cols-3 items-center justify-between gap-4 px-4 min-[901px]:px-8 py-4">
       <!-- Logo -->
       <div class="flex-shrink-0">
         {logo ? (
@@ -183,21 +183,21 @@ const { logo, logoAlt = "Logo" } = Astro.props;
       </div>
 
       <!-- Desktop Links -->
-      <div class="hidden md:flex justify-center gap-8">
-        <a href="/portfolio" class="nav-link text-neutral-50 font-semibold">PORTFOLIO</a>
+      <div class="hidden min-[901px]:flex justify-center items-center text-center gap-8">
+        <a href="/portfolio" class="nav-link text-neutral-50 font-semibold">CASE STUDIES</a>
         <a href="/services" class="nav-link text-neutral-50 font-semibold">SERVICES</a>
         <a href="/about" class="nav-link text-neutral-50 font-semibold">ABOUT</a>
       </div>
 
       <!-- Desktop Contact CTA -->
-      <div class="hidden md:flex justify-end">
+      <div class="hidden min-[901px]:flex justify-end">
         <Button href="/contact" variant="secondary" size="md" class="nav-contact-button">
           CONTACT US
         </Button>
       </div>
 
       <!-- Mobile Menu Toggle -->
-      <button class="md:hidden flex-shrink-0" id="menu-toggle" aria-label="Toggle menu" aria-expanded="false">
+      <button class="min-[901px]:hidden flex-shrink-0" id="menu-toggle" aria-label="Toggle menu" aria-expanded="false">
         <div class="hamburger" id="hamburger-icon">
           <span></span>
           <span></span>
@@ -211,11 +211,11 @@ const { logo, logoAlt = "Logo" } = Astro.props;
   <div id="mobile-menu">
     <div class="px-4 py-4">
       <div class="max-w-9xl mx-auto w-full space-y-3 flex flex-col">
-        <a href="/" class="mobile-link text-neutral-50 font-medium text-lg">Home</a>
-        <a href="/portfolio" class="mobile-link text-neutral-50 font-medium text-lg">Portfolio</a>
-        <a href="/services" class="mobile-link text-neutral-50 font-medium text-lg">Services</a>
-        <a href="/about" class="mobile-link text-neutral-50 font-medium text-lg">About</a>
-        <a href="/contact" class="mobile-link text-neutral-50 font-medium text-lg">Contact</a>
+        <a href="/" class="mobile-link text-neutral-50 font-medium text-lg">HOME</a>
+        <a href="/portfolio" class="mobile-link text-neutral-50 font-medium text-lg">CASE STUDIES</a>
+        <a href="/services" class="mobile-link text-neutral-50 font-medium text-lg">SERVICES</a>
+        <a href="/about" class="mobile-link text-neutral-50 font-medium text-lg">ABOUT</a>
+        <a href="/contact" class="mobile-link text-neutral-50 font-medium text-lg">CONTACT</a>
       </div>
     </div>
   </div>

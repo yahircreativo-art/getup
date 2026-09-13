@@ -6,22 +6,28 @@ interface Props {
 }
 
 const { post } = Astro.props;
-const { title, description, banner, pubDate, tags } = post.data;
+const { title, description, banner, hoverImage, pubDate, tags } = post.data;
 
 const formatDate = (date: Date) =>
   date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
 
 const base = import.meta.env.BASE_URL; // ends with '/'
 const bannerSrc = `${base}${banner.replace(/^\//, '')}`;
+const hoverImageSrc = hoverImage ? `${base}${hoverImage.replace(/^\//, '')}` : undefined;
 ---
 
-<a href={`/portfolio/${post.id}/`} class="portfolio-card group">
+<a
+  href={`/portfolio/${post.id}/`}
+  class="portfolio-card group"
+  data-hover-src={hoverImageSrc}
+>
   <!-- Banner -->
   <div class="portfolio-image">
     <img
       src={bannerSrc}
       alt={title}
-      class="w-full h-full object-cover"
+      data-default-src={bannerSrc}
+      class="w-full h-full object-contain"
       loading="lazy"
       decoding="async"
     />
@@ -37,7 +43,6 @@ const bannerSrc = `${base}${banner.replace(/^\//, '')}`;
   <div class="portfolio-info">
     <time class="portfolio-date" datetime={pubDate.toISOString()}>{formatDate(pubDate)}</time>
     <h3 class="portfolio-title">{title}</h3>
-    <p class="portfolio-description">{description}</p>
     <span class="portfolio-readmore">
       View case study
       <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -70,7 +75,7 @@ const bannerSrc = `${base}${banner.replace(/^\//, '')}`;
     width: 100%;
     aspect-ratio: 16 / 9;
     overflow: hidden;
-    background: var(--color-neutral-800);
+    background: var(--color-neutral-50);
   }
 
   .portfolio-image img {
@@ -123,3 +128,28 @@ const bannerSrc = `${base}${banner.replace(/^\//, '')}`;
     color: var(--color-brand-400);
   }
 </style>
+
+<script>
+  const cards = document.querySelectorAll<HTMLElement>('.portfolio-card[data-hover-src]');
+
+  cards.forEach((card) => {
+    const image = card.querySelector<HTMLImageElement>('.portfolio-image img');
+    const hoverSrc = card.dataset.hoverSrc;
+
+    if (!image || !hoverSrc) return;
+
+    const setImage = (src: string) => {
+      if (image.src.endsWith(src)) return;
+      image.src = src;
+    };
+
+    card.addEventListener('mouseenter', () => setImage(hoverSrc));
+    card.addEventListener('mouseleave', () => setImage(image.dataset.defaultSrc ?? ''));
+    card.addEventListener('focusin', () => setImage(hoverSrc));
+    card.addEventListener('focusout', (event) => {
+      if (!card.contains(event.relatedTarget as Node | null)) {
+        setImage(image.dataset.defaultSrc ?? '');
+      }
+    });
+  });
+</script>

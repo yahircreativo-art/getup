@@ -8,6 +8,8 @@ const portfolio = defineCollection({
     subtitle: z.string().optional(),
     description: z.string(),
     banner: z.string(),
+    logo: z.string(),
+    hoverImage: z.string().optional(),
     gallery: z.array(z.object({
       src: z.string(),
       alt: z.string(),
