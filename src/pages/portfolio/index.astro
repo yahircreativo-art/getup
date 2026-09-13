@@ -29,7 +29,7 @@ const projects = (await getCollection('portfolio', ({ data }) => !data.draft)).s
       {projects.length === 0 ? (
         <p class="text-center text-neutral-400 text-lg">No case studies yet. Check back soon!</p>
       ) : (
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
           {projects.map((post) => (
             <PortfolioCard post={post} />
           ))}
