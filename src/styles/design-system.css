@@ -206,6 +206,24 @@
 }
 
 
+/* CARD SURFACE — shared base for all cards */
+
+.card-surface {
+  display: flex;
+  flex-direction: column;
+  border-radius: 1rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  transition: all 0.3s var(--ease-standard);
+}
+
+.card-surface:hover {
+  transform: translateY(-4px);
+  border-color: rgba(99, 60, 200, 0.4);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+
 /* SCROLL ANIMATIONS */
 
 .animate-on-scroll {

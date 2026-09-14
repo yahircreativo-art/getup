@@ -32,7 +32,7 @@ const fallbackIcon = icons.monitor;
     <!-- 3x3 Grid -->
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
       {servicesData.map((service) => (
-        <div class="service-card">
+        <div class="service-card card-surface">
           <div class="service-icon">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -52,20 +52,8 @@ const fallbackIcon = icons.monitor;
 
 <style>
   .service-card {
-    display: flex;
-    flex-direction: column;
     gap: 1rem;
     padding: 1.75rem;
-    border-radius: 1rem;
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.06);
-    transition: all 0.3s var(--ease-standard);
-  }
-
-  .service-card:hover {
-    transform: translateY(-6px);
-    border-color: rgba(99, 60, 200, 0.4);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
   }
 
   .service-icon {

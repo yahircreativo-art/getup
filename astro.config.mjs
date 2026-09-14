@@ -6,7 +6,11 @@ import { siteConfig } from "./src/config/seo.config";
 export default defineConfig({
   site: siteConfig.url,
   output: "static",
-  integrations: [sitemap()],
+
+  integrations: [
+    sitemap(),
+  ],
+>>>>>>> b253bf1 (bug-fixes)
   vite: {
     plugins: [tailwindcss()],
   },

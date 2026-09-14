@@ -44,7 +44,7 @@ const { reviews = defaultReviews } = Astro.props;
     <div class="mt-12 grid grid-cols-1 gap-5 md:grid-cols-2">
       {reviews.map((review, index) => (
         <article
-          class="review-card animate-on-scroll fade-up"
+          class="review-card card-surface animate-on-scroll fade-up"
           style={`--review-delay: ${index * 120}ms`}
         >
           <div class="flex items-center justify-between gap-4">
@@ -79,11 +79,8 @@ const { reviews = defaultReviews } = Astro.props;
 
   .review-card {
     min-height: 19rem;
-    display: flex;
-    flex-direction: column;
     padding: 2rem;
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 1rem;
+    border-color: rgba(255, 255, 255, 0.08);
     background: linear-gradient(145deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.025));
     transition:
       opacity 0.7s var(--ease-standard),
@@ -96,7 +93,6 @@ const { reviews = defaultReviews } = Astro.props;
   .review-card:hover {
     border-color: rgba(255, 255, 255, 0.18);
     background: linear-gradient(145deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.035));
-    transform: translateY(-4px);
   }
 
   .quote-mark {

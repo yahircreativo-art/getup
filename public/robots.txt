@@ -1,4 +1,6 @@
-# Generado para GetUp — ugetup.com
+
+# https://www.robotstxt.org/robotstxt.html
+>>>>>>> b253bf1 (bug-fixes)
 User-agent: *
 Allow: /
 
