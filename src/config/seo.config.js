@@ -63,7 +63,7 @@ export const siteConfig = {
     name: 'GetUp',
     legalName: '', // nombre legal si es diferente
     description:
-      'Take your business to the next level with GetUp. We build professional websites for fitness and wellness businesses.',
+      'We SET UP your website, with traffic, so you receive calls 24/7.',
     phone: '', // con código de país, ej: '+1 555 123 4567'
     email: 'info@ugetup.com',
     priceRange: '$$', // $, $$, $$$ — cuánto cobra
