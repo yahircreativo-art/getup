@@ -23,7 +23,7 @@ export const siteConfig = {
   /* ─────────────────────────────────────────────
      IMAGEN PARA COMPARTIR (Open Graph / Twitter)
   ───────────────────────────────────────────── */
-  ogImage: '/banner.webp', // se resuelve como {url}{ogImage}
+  ogImage: '/ads.webp', // se resuelve como {url}{ogImage}
   ogImageWidth: 1200,
   ogImageHeight: 630,
   ogType: 'website', // website | article
