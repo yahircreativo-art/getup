@@ -8,6 +8,7 @@ import ContactForm from '../components/ContactForm.astro'
 import Logo from '../assets/getup.svg'
 import Mockup from '../assets/mockup-laptop.webp'
 import SEOPPC from '../assets/SEO-PPC.webp'
+import stats from '../assets/stats.webp'
 ---
 
 <Layout
@@ -39,13 +40,13 @@ import SEOPPC from '../assets/SEO-PPC.webp'
 	</FeatureSection>
 
 	<FeatureSection
-		title="SET UP"
-		description="Every business needs a great website — that's your Set Up. Beautiful design, great first impression."
+		title="GET REAL"
+		description="Ready to turn attention into action? We Get Real — converting your website traffic into calls, conversations, and customers."
 		imagePosition="right"
 		buttonLabel="Learn more"
 		buttonHref="#services"
 	>
-	<img slot="image" src={Mockup.src} alt="Website mockup on laptop" />
+	<img slot="image" src={stats.src} alt="Website mockup on laptop" />
 	</FeatureSection>
 
 	<Reviews />
