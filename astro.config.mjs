@@ -10,7 +10,6 @@ export default defineConfig({
   integrations: [
     sitemap(),
   ],
->>>>>>> b253bf1 (bug-fixes)
   vite: {
     plugins: [tailwindcss()],
   },
