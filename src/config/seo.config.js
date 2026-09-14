@@ -1,7 +1,4 @@
 export const siteConfig = {
-  /* ─────────────────────────────────────────────
-     INFORMACIÓN BÁSICA DEL SITIO
-  ───────────────────────────────────────────── */
   title: 'GetUp Web Agency',
   url: 'https://ugetup.com', // URL pública sin barra final
   description:
@@ -20,20 +17,13 @@ export const siteConfig = {
   themeColor: '#7d73ff', // color de la barra del navegador en móvil
   favicon: '/getup-icon.svg',
 
-  /* ─────────────────────────────────────────────
-     IMAGEN PARA COMPARTIR (Open Graph / Twitter)
-  ───────────────────────────────────────────── */
-  ogImage: '/ads.jpg', // se resuelve como {url}{ogImage}
+  ogImage: '/ads.webp', // se resuelve como {url}{ogImage}
   ogImageWidth: 1200,
   ogImageHeight: 630,
   ogType: 'website', // website | article
   twitterCard: 'summary_large_image', // summary | summary_large_image
   twitterSite: '', // handle sin @, ej: 'getup'
 
-  /* ─────────────────────────────────────────────
-     REDES SOCIALES → generan el campo sameAs
-     del schema JSON-LD automáticamente
-  ───────────────────────────────────────────── */
   social: {
     github: 'https://github.com/yahircreativo-art/getup',
     instagram: '',
@@ -69,7 +59,7 @@ export const siteConfig = {
     priceRange: '$$', // $, $$, $$$ — cuánto cobra
     currency: 'USD', // USD, MXN...
     foundingDate: '', // ej: '2024-01-15' o solo '2024'
-    image: '/ads.jpg',
+    image: '/banner.webp',
     areaServed: '', // zona donde operas, ej: 'Austin, TX'
     address: {
       streetAddress: '', // ej: '123 Main St'
