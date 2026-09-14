@@ -3,12 +3,11 @@ import Button from '../Button.astro'
 import Carousel from '../Carousel.astro'
 // Public files (public/portfolio/) are served relative to the base path
 const base = import.meta.env.BASE_URL; // ends with '/'
-const hcproducts = `${base}portfolio/hcproducts.webp`;
-const thekabobguy = `${base}portfolio/thekabobguy.webp`;
-const portfolio3 = `${base}portfolio/portfolio3.webp`;
+const haulerhacks = `${base}portfolio/hauler-hacks/hauler-hacks-mockup.webp`;
+const haulink = `${base}portfolio/haulink/haulink-mockup.webp`;
+const wrapsandprints = `${base}portfolio/wraps-and-prints/wraps-and-prints-mockup.webp`;
 
-const slides = [hcproducts,thekabobguy, portfolio3]
-const slides2 = [thekabobguy, portfolio3, hcproducts]
+const slides2 = [haulink, wrapsandprints, haulerhacks]
 ---
 
 <section id="hero" class="relative flex justify-center overflow-hidden" style="background: radial-gradient(circle at center 5%, var(--color-brand-600), var(--color-brand-700) 20%, var(--color-neutral-950) 65%)">
