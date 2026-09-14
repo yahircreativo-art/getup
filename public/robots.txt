@@ -1,0 +1,6 @@
+# Generado para GetUp — ugetup.com
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://ugetup.com/sitemap-index.xml

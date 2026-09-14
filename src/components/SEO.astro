@@ -1,10 +1,13 @@
 ---
 import { siteConfig } from '../config/seo.config';
+import { getImageDimensions } from '../lib/image-dimensions';
 
 interface Props {
   title?: string;
   description?: string;
   image?: string;
+  imageWidth?: number;
+  imageHeight?: number;
   canonical?: string;
   type?: 'website' | 'article' | 'business';
   schema?: Record<string, any>;
@@ -15,14 +18,34 @@ const {
   title = siteConfig.title,
   description = siteConfig.description,
   image = siteConfig.ogImage,
-  canonical = siteConfig.url,
+  imageWidth,
+  imageHeight,
+  canonical: canonicalProp,
   type = 'website',
   schema,
   robots = 'index, follow, max-image-preview:large, max-snippet:-1',
 } = Astro.props;
 
+// Canonical URL: usa la pasada por props si existe; si no, deriva la URL
+// absoluta de la página actual (Astro.url ya incluye site como base).
+const canonical = canonicalProp || Astro.url;
+const canonicalUrl = new URL(canonical, siteConfig.url);
+canonicalUrl.hash = ''; // los fragments no deben ir en el canonical
+const canonicalHref = canonicalUrl.href;
+
 const pageTitle = title === siteConfig.title ? title : `${title} | ${siteConfig.title}`;
 const fullImage = image.startsWith('http') ? image : `${siteConfig.url}${image}`;
+
+// Dimensiones del og:image: props explícitas > dimensiones reales del archivo > config.
+const imagePathForDims = fullImage.startsWith('http')
+  ? new URL(fullImage).pathname
+  : fullImage;
+const imageDims =
+  imageWidth && imageHeight
+    ? { width: imageWidth, height: imageHeight }
+    : getImageDimensions(imagePathForDims);
+const ogImageWidth = imageDims?.width ?? siteConfig.ogImageWidth;
+const ogImageHeight = imageDims?.height ?? siteConfig.ogImageHeight;
 const socials = Object.values(siteConfig.social || {}).filter(Boolean);
 const { business, verification } = siteConfig;
 
@@ -84,7 +107,7 @@ const schemaData = schema || defaultSchema;
   <meta name="keywords" content={siteConfig.keywords.join(', ')} />
 )}
 <meta name="robots" content={robots} />
-<link rel="canonical" href={canonical} />
+<link rel="canonical" href={canonicalHref} />
 <meta name="theme-color" content={siteConfig.themeColor} />
 
 {verification?.google && <meta name="google-site-verification" content={verification.google} />}
@@ -101,12 +124,12 @@ const schemaData = schema || defaultSchema;
 
 <!-- Open Graph -->
 <meta property="og:type" content={type === 'article' ? 'article' : siteConfig.ogType || 'website'} />
-<meta property="og:url" content={canonical} />
+<meta property="og:url" content={canonicalHref} />
 <meta property="og:title" content={pageTitle} />
 <meta property="og:description" content={description} />
 <meta property="og:image" content={fullImage} />
-<meta property="og:image:width" content={siteConfig.ogImageWidth} />
-<meta property="og:image:height" content={siteConfig.ogImageHeight} />
+<meta property="og:image:width" content={ogImageWidth} />
+<meta property="og:image:height" content={ogImageHeight} />
 <meta property="og:site_name" content={siteConfig.title} />
 <meta property="og:locale" content={siteConfig.locale} />
 

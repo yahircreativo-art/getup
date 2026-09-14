@@ -2,11 +2,13 @@
 import Layout from '../layouts/Layout.astro';
 import Button from '../components/Button.astro';
 import Icon from '../assets/getup-icon.svg';
+import { siteConfig } from '../config/seo.config';
 ---
 
 <Layout
   title="Page Not Found"
   description="The page you're looking for doesn't exist. Head back to the GetUp homepage."
+  canonical={siteConfig.url}
   robots="noindex, nofollow"
 >
   <section class="min-h-[80vh] flex items-center justify-center px-4 md:px-8 pt-24 pb-20">

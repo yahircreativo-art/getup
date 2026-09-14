@@ -69,7 +69,7 @@ export const siteConfig = {
     priceRange: '$$', // $, $$, $$$ — cuánto cobra
     currency: 'USD', // USD, MXN...
     foundingDate: '', // ej: '2024-01-15' o solo '2024'
-    image: '/banner.webp',
+    image: '/ads.jpg',
     areaServed: '', // zona donde operas, ej: 'Austin, TX'
     address: {
       streetAddress: '', // ej: '123 Main St'
