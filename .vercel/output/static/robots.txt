@@ -1,0 +1,8 @@
+
+# https://www.robotstxt.org/robotstxt.html
+>>>>>>> b253bf1 (bug-fixes)
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://ugetup.com/sitemap-index.xml
