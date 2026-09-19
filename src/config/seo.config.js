@@ -35,6 +35,13 @@ export const siteConfig = {
   },
 
   /* ─────────────────────────────────────────────
+     ANALYTICS
+  ───────────────────────────────────────────── */
+  analytics: {
+    googleAnalyticsId: 'G-V3QB7766HS', // Measurement ID de GA4
+  },
+
+  /* ─────────────────────────────────────────────
      VERIFICACIÓN EN BUSCADORES
      Pega el código que te da cada herramienta
   ───────────────────────────────────────────── */
