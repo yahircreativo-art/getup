@@ -33,7 +33,7 @@ export const POST: APIRoute = async ({ request }) => {
 
     const { data, error } = await resend.emails.send({
       from: 'GetUp Contact Form <noreply@ugetup.com>',
-      to: ['info@getup.com'],
+      to: ['info@ugetup.com'],
       subject: `New Contact Form Submission from ${name}`,
       html: `
         <!DOCTYPE html>
@@ -79,7 +79,7 @@ export const POST: APIRoute = async ({ request }) => {
     });
 
     if (error) {
-      console.error('Resend error:', error);
+      console.error('Resend error:', JSON.stringify(error));
       return new Response(
         JSON.stringify({ error: 'Failed to send email' }),
         { status: 500, headers: { 'Content-Type': 'application/json' } }

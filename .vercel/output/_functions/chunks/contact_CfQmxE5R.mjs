@@ -5,7 +5,7 @@ var contact_exports = /* @__PURE__ */ __exportAll({
 	POST: () => POST,
 	prerender: () => false
 });
-var resend = new Resend(void 0);
+var resend = new Resend("re_tu_api_key_aqui");
 var POST = async ({ request }) => {
 	try {
 		const formData = await request.formData();
@@ -22,8 +22,8 @@ var POST = async ({ request }) => {
 			headers: { "Content-Type": "application/json" }
 		});
 		const { data, error } = await resend.emails.send({
-			from: "GetUp Contact Form <onboarding@resend.dev>",
-			to: ["fernando.ygh@gmail.com"],
+			from: "GetUp Contact Form <noreply@ugetup.com>",
+			to: ["info@ugetup.com"],
 			subject: `New Contact Form Submission from ${name}`,
 			html: `
         <!DOCTYPE html>
@@ -68,7 +68,7 @@ var POST = async ({ request }) => {
 			replyTo: email
 		});
 		if (error) {
-			console.error("Resend error:", error);
+			console.error("Resend error:", JSON.stringify(error));
 			return new Response(JSON.stringify({ error: "Failed to send email" }), {
 				status: 500,
 				headers: { "Content-Type": "application/json" }
