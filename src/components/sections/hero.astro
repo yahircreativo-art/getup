@@ -1,6 +1,7 @@
 ---
 import Button from '../Button.astro'
 import Carousel from '../Carousel.astro'
+import Logo from '../../assets/getup.svg'
 // Public files (public/portfolio/) are served relative to the base path
 const base = import.meta.env.BASE_URL; // ends with '/'
 const haulerhacks = `${base}portfolio/hauler-hacks/hauler-hacks-mockup.webp`;
@@ -21,7 +22,7 @@ const slides2 = [wrapsandprints, haulink, haulerhacks]
     <div class="max-w-9xl mx-auto w-full">
     <div class="flex flex-col items-center gap-6 md:gap-8">
       <img
-        src={`${base}getupbranding.webp`}
+        src={Logo.src}
         alt="GetUp"
         class="hero-brand-image w-full max-w-3xl h-40 sm:h-56 md:h-96 object-contain"
         loading="eager"
