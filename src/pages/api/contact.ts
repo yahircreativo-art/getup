@@ -42,36 +42,89 @@ export const POST: APIRoute = async ({ request }) => {
           <meta charset="utf-8">
           <meta name="viewport" content="width=device-width, initial-scale=1.0">
         </head>
-        <body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 20px;">
-          <div style="background: linear-gradient(135deg, #633cc8 0%, #4a2da0 100%); color: white; padding: 30px; border-radius: 12px 12px 0 0; text-align: center;">
-            <h1 style="margin: 0; font-size: 24px; font-weight: 700;">New Contact Form Submission</h1>
-            <p style="margin: 10px 0 0; opacity: 0.9;">From GetUp Website</p>
-          </div>
-          
-          <div style="background: #f8f9fa; padding: 30px; border: 1px solid #e9ecef; border-top: none;">
-            <table style="width: 100%; border-collapse: collapse;">
-              <tr>
-                <td style="padding: 12px 0; border-bottom: 1px solid #e9ecef; font-weight: 600; color: #495057; width: 140px;">Name</td>
-                <td style="padding: 12px 0; border-bottom: 1px solid #e9ecef; color: #212529;">${name}</td>
-              </tr>
-              <tr>
-                <td style="padding: 12px 0; border-bottom: 1px solid #e9ecef; font-weight: 600; color: #495057;">Phone</td>
-                <td style="padding: 12px 0; border-bottom: 1px solid #e9ecef; color: #212529;">${phone}</td>
-              </tr>
-              <tr>
-                <td style="padding: 12px 0; border-bottom: 1px solid #e9ecef; font-weight: 600; color: #495057;">Email</td>
-                <td style="padding: 12px 0; border-bottom: 1px solid #e9ecef; color: #212529;"><a href="mailto:${email}" style="color: #633cc8;">${email}</a></td>
-              </tr>
-              <tr>
-                <td style="padding: 12px 0; font-weight: 600; color: #495057; vertical-align: top;">Description</td>
-                <td style="padding: 12px 0; color: #212529;">${description}</td>
-              </tr>
-            </table>
-          </div>
-          
-          <div style="padding: 20px; text-align: center; color: #6c757d; font-size: 14px;">
-            <p style="margin: 0;">This email was sent from your website contact form.</p>
-          </div>
+        <body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; color: #333333; margin: 0; padding: 0; background-color: #f4f4f7;">
+          <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background-color: #f4f4f7; padding: 24px 12px;">
+            <tr>
+              <td align="center">
+                <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="max-width: 600px; width: 100%;">
+
+                  <!-- Logo -->
+                  <tr>
+                    <td align="center" style="padding: 8px 0 24px;">
+                      <a href="https://ugetup.com" target="_blank" style="text-decoration: none;">
+                        <img src="https://ugetup.com/email-logo.png" alt="GetUp" width="180" style="display: block; width: 180px; height: auto; border: 0;">
+                      </a>
+                    </td>
+                  </tr>
+
+                  <!-- Header card -->
+                  <tr>
+                    <td>
+                      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background: linear-gradient(135deg, #633cc8 0%, #4a2da0 100%); border-radius: 16px 16px 0 0;">
+                        <tr>
+                          <td align="center" style="padding: 32px 40px;">
+                            <h1 style="margin: 0; font-size: 22px; font-weight: 700; color: #ffffff; letter-spacing: 0.5px;">NEW LEAD 🔥</h1>
+                            <p style="margin: 8px 0 0; font-size: 14px; color: rgba(255,255,255,0.85);">Someone wants to work with you</p>
+                          </td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+
+                  <!-- Body card -->
+                  <tr>
+                    <td>
+                      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background-color: #ffffff; border: 1px solid #e9ecef; border-top: none; border-radius: 0 0 16px 16px;">
+
+                        <!-- Contact info rows -->
+                        <tr>
+                          <td style="padding: 32px 40px 8px;">
+                            <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+                              <tr>
+                                <td style="padding: 10px 0; border-bottom: 1px solid #f0f0f2; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #9ca3af; width: 110px;">Name</td>
+                                <td style="padding: 10px 0; border-bottom: 1px solid #f0f0f2; font-size: 15px; font-weight: 600; color: #111827;">${name}</td>
+                              </tr>
+                              <tr>
+                                <td style="padding: 10px 0; border-bottom: 1px solid #f0f0f2; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #9ca3af;">Phone</td>
+                                <td style="padding: 10px 0; border-bottom: 1px solid #f0f0f2; font-size: 15px; color: #111827;"><a href="tel:${phone}" style="color: #111827; text-decoration: none;">${phone}</a></td>
+                              </tr>
+                              <tr>
+                                <td style="padding: 10px 0; border-bottom: 1px solid #f0f0f2; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #9ca3af;">Email</td>
+                                <td style="padding: 10px 0; border-bottom: 1px solid #f0f0f2; font-size: 15px; color: #111827;"><a href="mailto:${email}" style="color: #633cc8; font-weight: 600; text-decoration: none;">${email}</a></td>
+                              </tr>
+                            </table>
+                          </td>
+                        </tr>
+
+                        <!-- Description -->
+                        <tr>
+                          <td style="padding: 16px 40px 32px;">
+                            <p style="margin: 0 0 8px; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #9ca3af;">Business Description</p>
+                            <div style="background-color: #f8f7ff; border-left: 3px solid #633cc8; border-radius: 0 8px 8px 0; padding: 14px 18px; font-size: 15px; line-height: 1.6; color: #374151;">${description}</div>
+                          </td>
+                        </tr>
+
+                        <!-- CTA -->
+                        <tr>
+                          <td align="center" style="padding: 0 40px 36px;">
+                            <a href="mailto:${email}" target="_blank" style="display: inline-block; background: linear-gradient(135deg, #633cc8 0%, #4a2da0 100%); color: #ffffff; font-size: 15px; font-weight: 700; text-decoration: none; padding: 14px 36px; border-radius: 999px;">Reply to ${name.split(' ')[0] ?? 'them'}</a>
+                          </td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+
+                  <!-- Footer -->
+                  <tr>
+                    <td align="center" style="padding: 24px 12px 8px;">
+                      <p style="margin: 0; font-size: 12px; color: #9ca3af;">Sent from the contact form at <a href="https://ugetup.com" style="color: #633cc8; text-decoration: none;">ugetup.com</a></p>
+                    </td>
+                  </tr>
+
+                </table>
+              </td>
+            </tr>
+          </table>
         </body>
         </html>
       `,
