@@ -1,10 +1,16 @@
 // Quick test: node test-resend.mjs
 import { Resend } from 'resend';
-import { config } from 'dotenv';
+import { readFileSync } from 'fs';
 
-config(); // loads .env
-
-const apiKey = process.env.RESEND_API_KEY;
+// Read .env manually (no dotenv dependency needed)
+let apiKey;
+try {
+  const envContent = readFileSync('.env', 'utf-8');
+  const match = envContent.match(/RESEND_API_KEY=(.+)/);
+  apiKey = match?.[1]?.trim();
+} catch {
+  // .env doesn't exist
+}
 
 if (!apiKey || apiKey === 're_tu_api_key_aqui') {
   console.error('❌ No API key found. Add your Resend API key to .env:');
@@ -18,7 +24,7 @@ const resend = new Resend(apiKey);
 
 try {
   const { data, error } = await resend.emails.send({
-    from: 'GetUp Test <onboarding@resend.dev>',
+    from: 'GetUp Test <noreply@ugetup.com>',
     to: ['info@ugetup.com'],
     subject: 'Test from GetUp - Resend is working!',
     html: '<h1>It works!</h1><p>If you received this, Resend is configured correctly.</p>',
