@@ -1,0 +1,151 @@
+---
+---
+
+<section id="pricing" class="pricing-section py-24 md:py-32">
+  <div class="mx-auto w-full max-w-7xl px-4 md:px-8">
+    <div class="mx-auto max-w-3xl text-center animate-on-scroll fade-up">
+      <span class="text-sm font-semibold uppercase tracking-[0.2em] text-brand-400">Pricing</span>
+      <h2 class="mt-4 text-4xl font-black text-neutral-50 sm:text-5xl md:text-6xl">
+        Choose the plan that fits your next move.
+      </h2>
+      <p class="mt-5 text-lg text-neutral-300">
+        Clear packages for businesses that want a stronger digital presence without the guesswork.
+      </p>
+    </div>
+
+    <div class="mt-12 grid grid-cols-1 gap-6 lg:grid-cols-3">
+      <article class="pricing-card animate-on-scroll fade-up">
+        <div class="flex items-center justify-between gap-3">
+          <h3 class="text-2xl font-black text-neutral-50">Launch</h3>
+          <span class="plan-tag">Starter</span>
+        </div>
+
+        <div class="mt-8 flex items-end gap-2">
+          <span class="text-5xl font-black text-neutral-50">$1.5k</span>
+          <span class="pb-2 text-sm text-neutral-400">starting</span>
+        </div>
+
+        <p class="mt-4 text-neutral-300">
+          A polished web presence for businesses ready to look credible and convert more local leads.
+        </p>
+
+        <ul class="mt-8 space-y-3 text-sm text-neutral-200">
+          <li>• Custom landing page</li>
+          <li>• Mobile-first design</li>
+          <li>• Lead capture form</li>
+          <li>• Basic SEO setup</li>
+        </ul>
+
+        <a href="/contact" class="mt-8 inline-flex w-full items-center justify-center rounded-full border border-white/10 px-5 py-3 text-sm font-semibold text-neutral-50 transition hover:border-brand-400 hover:text-brand-300">
+          Book a consult
+        </a>
+      </article>
+
+      <article class="pricing-card pricing-card-featured animate-on-scroll fade-up">
+        <div class="flex items-center justify-between gap-3">
+          <h3 class="text-2xl font-black text-neutral-50">Growth</h3>
+          <span class="plan-tag featured">Most popular</span>
+        </div>
+
+        <div class="mt-8 flex items-end gap-2">
+          <span class="text-5xl font-black text-neutral-50">$3.5k</span>
+          <span class="pb-2 text-sm text-neutral-300">starting</span>
+        </div>
+
+        <p class="mt-4 text-neutral-200">
+          Built for brands ready to scale with a stronger offer, better UX, and more conversion points.
+        </p>
+
+        <ul class="mt-8 space-y-3 text-sm text-neutral-100">
+          <li>• Full multi-section website</li>
+          <li>• Service pages and portfolio</li>
+          <li>• Conversion-focused CTAs</li>
+          <li>• Google Business optimization</li>
+        </ul>
+
+        <a href="/contact" class="mt-8 inline-flex w-full items-center justify-center rounded-full bg-brand-500 px-5 py-3 text-sm font-semibold text-neutral-50 shadow-[0_10px_25px_rgba(121,88,255,0.4)] transition hover:bg-brand-400">
+          Get started
+        </a>
+      </article>
+
+      <article class="pricing-card animate-on-scroll fade-up">
+        <div class="flex items-center justify-between gap-3">
+          <h3 class="text-2xl font-black text-neutral-50">Authority</h3>
+          <span class="plan-tag">Premium</span>
+        </div>
+
+        <div class="mt-8 flex items-end gap-2">
+          <span class="text-5xl font-black text-neutral-50">$6k+</span>
+          <span class="pb-2 text-sm text-neutral-400">custom</span>
+        </div>
+
+        <p class="mt-4 text-neutral-300">
+          A high-impact digital experience for businesses that need a premium brand presence and stronger authority.
+        </p>
+
+        <ul class="mt-8 space-y-3 text-sm text-neutral-200">
+          <li>• Premium design direction</li>
+          <li>• Advanced conversion strategy</li>
+          <li>• SEO + content direction</li>
+          <li>• Ongoing optimization support</li>
+        </ul>
+
+        <a href="/contact" class="mt-8 inline-flex w-full items-center justify-center rounded-full border border-white/10 px-5 py-3 text-sm font-semibold text-neutral-50 transition hover:border-brand-400 hover:text-brand-300">
+          Talk to us
+        </a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<style>
+  .pricing-section {
+    background: linear-gradient(180deg, rgba(18, 18, 18, 0.96), rgba(9, 9, 9, 1));
+  }
+
+  .pricing-card {
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 1.5rem;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.02));
+    padding: 2rem;
+    transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+  }
+
+  .pricing-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(179, 143, 255, 0.5);
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.18);
+  }
+
+  .pricing-card-featured {
+    border-color: rgba(179, 143, 255, 0.75);
+    background: linear-gradient(180deg, rgba(121, 88, 255, 0.18), rgba(255, 255, 255, 0.03));
+    transform: scale(1.02);
+  }
+
+  .plan-tag {
+    display: inline-flex;
+    align-items: center;
+    border-radius: 9999px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: rgba(255, 255, 255, 0.04);
+    padding: 0.35rem 0.7rem;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-neutral-300);
+  }
+
+  .plan-tag.featured {
+    border-color: rgba(201, 186, 255, 0.35);
+    background: rgba(121, 88, 255, 0.16);
+    color: var(--color-neutral-50);
+  }
+
+  @media (max-width: 1023px) {
+    .pricing-card-featured {
+      transform: none;
+    }
+  }
+</style>
