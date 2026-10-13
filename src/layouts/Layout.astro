@@ -46,12 +46,13 @@ const { title, description, image, imageWidth, imageHeight, canonical, type, sch
 		
 		<!-- Google tag (gtag.js) -->
 		<script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${siteConfig.analytics.googleAnalyticsId}`}></script>
-		<script is:inline define:vars={{ gaId: siteConfig.analytics.googleAnalyticsId }}>
+		<script is:inline define:vars={{ gaId: siteConfig.analytics.googleAnalyticsId, adsId: 'AW-18447571006' }}>
   		window.dataLayer = window.dataLayer || [];
-  		function gtag(){dataLayer.push(arguments);}
+  		function gtag(){window.dataLayer.push(arguments);}
   		gtag('js', new Date());
 
   		gtag('config', gaId);
+		gtag('config', adsId);
 		</script>
 		<Analytics/>
 		<SpeedInsights/>
