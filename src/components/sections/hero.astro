@@ -2,8 +2,10 @@
 import Button from '../Button.astro'
 import Carousel from '../Carousel.astro'
 import Logo from '../../assets/website-mockups.png'
+import { siteConfig } from '../../config/seo.config.js'
 // Public files (public/portfolio/) are served relative to the base path
 const base = import.meta.env.BASE_URL; // ends with '/'
+const phoneHref = `tel:${siteConfig.business.phone.replace(/[^\d+]/g, '')}`
 const haulerhacks = `${base}portfolio/hauler-hacks/hauler-hacks-mockup.webp`;
 const wrapsandprints = `${base}portfolio/wraps-and-prints/wraps-and-prints-mockup.webp`;
 const haulink = `${base}portfolio/haulink/haulink-mockup.webp`;
@@ -24,32 +26,38 @@ const slides2 = [wrapsandprints, haulink, haulerhacks]
       <img
         src={Logo.src}
         alt="GetUp"
-        class="hero-brand-image w-full max-w-3xl h-40 sm:h-56 md:h-full object-contain"
+        class="hero-brand-image w-full max-w-3xl h-40 sm:h-80 object-contain"
         loading="eager"
         decoding="async"
       />
-      <h1 class="hero-title text-4xl sm:text-6xl md:text-7xl font-black w-11/12 sm:max-w-3xl text-neutral-50 drop-shadow-2xl uppercase">
-        WEB DESIGN IN KERN COUNTY
+      <h1 class="hero-title text-2xl sm:text-4xl md:text-5xl font-black w-11/12 sm:max-w-3xl text-neutral-50 drop-shadow-2xl uppercase">
+       Get Real Customer Calls 24/7
       </h1>
       <p class="hero-subtitle text-neutral-200 text-md md:text-xl max-w-2xl leading-relaxed opacity-0">
-        YOU GET UP, WE SET UP. Google Ads that bring you local traffic and leads. Make your phone ring.
+        We build high-converting websites and local ad systems that drive qualified leads directly to your business.
       </p>
       <div class="hero-cta flex flex-col sm:flex-row gap-4 opacity-0">
-        <Button variant="primary" size="md" href="#contact">
-          CONTACT
+        <Button variant="primary" size="md" href={phoneHref}>
+          CALL OR TEXT
+        </Button>
+        <Button variant="secondary" size="md" href="/contact">
+          GET MY FREE AUDIT
         </Button>
       </div>
 
       <div class="relative overflow-hidden pt-8 w-full">
-			<div class="flex flex-col gap-3">
-				<Carousel images={slides2} speed={50} direction="left"/>
-			</div>
-			<div class="absolute inset-0 bg-linear-to-t from-neutral-950 via-neutral-950/50 to-transparent"/>
+      <a href={`${base}portfolio/`} aria-label="View our portfolio" class="block w-full rounded-xl focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white">
+        <div class="flex flex-col gap-3">
+          <Carousel images={slides2} speed={50} direction="left"/>
+        </div>
+        <div class="pointer-events-none absolute inset-0 bg-linear-to-t from-neutral-950 via-neutral-950/50 to-transparent"/>
+      </a>
 		  </div>
 
     </div>
     </div>
   </div>
+
 </section>
 
 <style>

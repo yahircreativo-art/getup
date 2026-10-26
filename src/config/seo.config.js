@@ -61,7 +61,7 @@ export const siteConfig = {
     legalName: '', // nombre legal si es diferente
     description:
       'We SET UP your website, with traffic, so you receive calls 24/7.',
-    phone: '', // con código de país, ej: '+1 555 123 4567'
+    phone: '+1 661 750 3300', // con código de país, ej: '+1 555 123 4567'
     email: 'info@ugetup.com',
     priceRange: '$$', // $, $$, $$$ — cuánto cobra
     currency: 'USD', // USD, MXN...
