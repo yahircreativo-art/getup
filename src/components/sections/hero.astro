@@ -20,23 +20,23 @@ const slides2 = [wrapsandprints, haulink, haulerhacks]
   <slot />
 
   <!-- Content -->
-  <div class="relative z-10 w-full pt-32 pb-32 flex justify-center text-center px-4 md:px-8">
-    <div class="max-w-9xl mx-auto w-full">
-    <div class="flex flex-col items-center gap-6 md:gap-8">
-      <img
-        src={Logo.src}
-        alt="GetUp"
-        class="hero-brand-image w-full max-w-3xl h-40 sm:h-80 object-contain"
-        loading="eager"
-        decoding="async"
-      />
-      <h1 class="hero-title text-2xl sm:text-4xl md:text-5xl font-black w-11/12 sm:max-w-3xl text-neutral-50 drop-shadow-2xl uppercase">
-       Get Real Customer Calls 24/7
+  <div class="relative z-10 mx-auto grid w-full max-w-9xl grid-cols-1 items-center gap-4 px-8 py-24 text-center sm:py-28 md:grid-cols-2 md:py-48 md:text-left">
+    <img
+      src={Logo.src}
+      alt="GetUp"
+      class="hero-brand-image order-1 mx-auto h-40 w-full max-w-3xl object-contain sm:h-80 md:order-2 md:h-[28rem]"
+      loading="eager"
+      decoding="async"
+    />
+
+    <div class="order-2 flex flex-col items-center gap-6 md:order-1 md:items-start md:gap-8">
+      <h1 class="hero-title w-11/12 text-2xl font-black uppercase text-neutral-50 drop-shadow-2xl sm:max-w-3xl sm:text-4xl md:w-full md:text-6xl">
+        Get Real Customer Calls 24/7
       </h1>
-      <p class="hero-subtitle text-neutral-200 text-md md:text-xl max-w-2xl leading-relaxed opacity-0">
+      <p class="hero-subtitle max-w-2xl text-md leading-relaxed text-neutral-200 opacity-0 md:text-xl">
         We build high-converting websites and local ad systems that drive qualified leads directly to your business.
       </p>
-      <div class="hero-cta flex flex-col sm:flex-row gap-4 opacity-0">
+      <div class="hero-cta flex flex-col gap-4 opacity-0 sm:flex-row">
         <Button variant="primary" size="md" href={phoneHref}>
           CALL OR TEXT
         </Button>
@@ -44,17 +44,13 @@ const slides2 = [wrapsandprints, haulink, haulerhacks]
           GET MY FREE AUDIT
         </Button>
       </div>
-
-      <div class="relative overflow-hidden pt-8 w-full">
-      <a href={`${base}portfolio/`} aria-label="View our portfolio" class="block w-full rounded-xl focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white">
-        <div class="flex flex-col gap-3">
-          <Carousel images={slides2} speed={50} direction="left"/>
-        </div>
-        <div class="pointer-events-none absolute inset-0 bg-linear-to-t from-neutral-950 via-neutral-950/50 to-transparent"/>
-      </a>
-		  </div>
-
     </div>
+
+    <div class="relative order-3 col-span-full w-full overflow-hidden pt-8">
+      <a href={`${base}portfolio/`} aria-label="View our portfolio" class="block w-full rounded-xl focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white">
+        <Carousel images={slides2} speed={50} direction="left" />
+        <div class="pointer-events-none absolute inset-0 bg-linear-to-t from-neutral-950 via-neutral-950/50 to-transparent" />
+      </a>
     </div>
   </div>
 
