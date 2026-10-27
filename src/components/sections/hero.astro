@@ -10,7 +10,6 @@ const haulerhacks = `${base}portfolio/hauler-hacks/hauler-hacks-mockup.webp`;
 const wrapsandprints = `${base}portfolio/wraps-and-prints/wraps-and-prints-mockup.webp`;
 const haulink = `${base}portfolio/haulink/haulink-mockup.webp`;
 
-const slides = [haulerhacks,wrapsandprints, haulink]
 const slides2 = [wrapsandprints, haulink, haulerhacks]
 ---
 
@@ -20,18 +19,25 @@ const slides2 = [wrapsandprints, haulink, haulerhacks]
   <slot />
 
   <!-- Content -->
-  <div class="relative z-10 mx-auto grid w-full max-w-9xl grid-cols-1 items-center gap-4 px-8 py-24 text-center sm:py-28 md:grid-cols-2 md:py-48 md:text-left">
-    <img
-      src={Logo.src}
-      alt="GetUp"
-      class="hero-brand-image order-1 mx-auto h-40 w-full max-w-3xl object-contain sm:h-80 md:order-2 md:h-[28rem]"
-      loading="eager"
-      decoding="async"
-    />
+  <div class="relative z-10 mx-auto grid w-full max-w-9xl grid-cols-1 items-center gap-8 px-8 py-24 text-center sm:py-28 md:grid-cols-2 md:py-48 md:text-left">
+    <div class="relative order-1 min-w-0 w-full overflow-hidden md:order-2">
+      <a href={`${base}portfolio/`} aria-label="View our portfolio" class="block w-full min-w-0 rounded-xl focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white md:hidden">
+        <Carousel images={slides2} speed={50} direction="left" />
+      </a>
+      <a href={`${base}portfolio/`} aria-label="View our portfolio" class="hidden w-full rounded-xl focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white md:block">
+        <img
+          src={Logo.src}
+          alt="GetUp website and marketing mockups"
+          class="mx-auto h-40 w-full max-w-3xl object-contain sm:h-80 md:h-[28rem]"
+          loading="eager"
+          decoding="async"
+        />
+      </a>
+    </div>
 
-    <div class="order-2 flex flex-col items-center gap-6 md:order-1 md:items-start md:gap-8">
-      <h1 class="hero-title w-11/12 text-2xl font-black uppercase text-neutral-50 drop-shadow-2xl sm:max-w-3xl sm:text-4xl md:w-full md:text-6xl">
-        Get Real Customer Calls 24/7
+    <div class="order-2 flex min-w-0 flex-col items-center gap-6 md:order-1 md:items-start md:gap-8">
+      <h1 class="hero-title w-11/12 text-3xl font-black uppercase text-neutral-50 drop-shadow-2xl sm:max-w-3xl sm:text-4xl md:w-full md:text-6xl">
+        Web + Marketing System BAKERSFIELD PRINT SHOP
       </h1>
       <p class="hero-subtitle max-w-2xl text-md leading-relaxed text-neutral-200 opacity-0 md:text-xl">
         We build high-converting websites and local ad systems that drive qualified leads directly to your business.
@@ -46,23 +52,11 @@ const slides2 = [wrapsandprints, haulink, haulerhacks]
       </div>
     </div>
 
-    <div class="relative order-3 col-span-full w-full overflow-hidden pt-8">
-      <a href={`${base}portfolio/`} aria-label="View our portfolio" class="block w-full rounded-xl focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white">
-        <Carousel images={slides2} speed={50} direction="left" />
-        <div class="pointer-events-none absolute inset-0 bg-linear-to-t from-neutral-950 via-neutral-950/50 to-transparent" />
-      </a>
-    </div>
   </div>
 
 </section>
 
 <style>
-
-  .hero-brand-image {
-    opacity: 0;
-    transform: translateY(16px) scale(0.98);
-    animation: hero-image-fade-in 0.8s var(--ease-standard) forwards;
-  }
 
   .hero-title {
     opacity: 0;
@@ -89,15 +83,7 @@ const slides2 = [wrapsandprints, haulink, haulerhacks]
     }
   }
 
-  @keyframes hero-image-fade-in {
-    to {
-      opacity: 1;
-      transform: translateY(0) scale(1);
-    }
-  }
-
   @media (prefers-reduced-motion: reduce) {
-    .hero-brand-image,
     .hero-title,
     .hero-subtitle,
     .hero-cta {
